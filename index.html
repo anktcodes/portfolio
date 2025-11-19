@@ -1,130 +1,59 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ankit | Data Analyst Portfolio</title>
+  <title>Working Navbar</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="page-wrapper">
- <div class="nav-wrapper">
-  <div class="grad-bar"></div>
-  <nav class="navbar">
-    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c8/Bluestar_%28bus_company%29_logo.svg/1280px-Bluestar_%28bus_company%29_logo.svg.png" alt="Company Logo">
-    <div class="menu-toggle" id="mobile-menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </div>
-    <ul class="nav no-search">
-      <li class="nav-item"><a href="#">Home</a></li>
-      <li class="nav-item"><a href="#">About</a></li>
-      <li class="nav-item"><a href="#">Work</a></li>
-      <li class="nav-item"><a href="#">Careers</a></li>
-      <li class="nav-item"><a href="#">Contact Us</a></li>
-      <i class="fas fa-search" id="search-icon"></i>
-      <input class="search-input" type="text" placeholder="Search..">
-    </ul>
-  </nav>
+
+<div class="page-wrapper">
+
+  <!-- NAVBAR -->
+  <div class="nav-wrapper">
+    <div class="grad-bar"></div>
+
+    <nav class="navbar">
+
+      <div class="logo"><span id="ankit">ankit</span><span id="dev">.dev</span></div>
+      <div id="mobile-menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+
+      <ul class="nav">
+        <li class="nav-item"><a href="#">Home</a></li>
+        <li class="nav-item"><a href="#">Projects</a></li>
+        <li class="nav-item"><a href="#">Experience</a></li>
+        <li class="nav-item"><a href="#">Contact</a></li>
+        <i id="search-icon" class="fas fa-search"></i>
+        <input type="text" class="search-input" placeholder="Search..">
+      </ul>
+
+    </nav>
   </div>
-  <section class="headline">
-    <h1>Responsive Navigation</h1>
-    <p>Using CSS grid and flexbox to easily build navbars!</p>
+
+  <section style="height:300px; background:#6e65be; color:rgb(41, 2, 77); display:flex; align-items:center; justify-content:center;">
+    <h1 style="background-color: #6e65be;" >This Website is Under construction...</h1>
   </section>
-  <section class="features">
-    <div class="feature-container">
-      <img src="https://cdn-images-1.medium.com/max/2000/1*HFAEJvVOq4AwFuBivNu_OQ.png" alt="Flexbox Feature">
-      <h2>Flexbox Featured</h2>
-      <p>This pen contains use of flexbox for the headline and feature section! We use it in our mobile navbar and show the power of mixing css grid and flexbox.</p>
-    </div>
-    <div class="feature-container">
-      <img src="https://blog.webix.com/wp-content/uploads/2017/06/20170621-CSS-Grid-Layout-710x355-tiny.png" alt="Flexbox Feature">
-      <h2>CSS Grid Navigation</h2>
-      <p>While flexbox is used for the the mobile navbar, CSS grid is used for the desktop navbar showing many ways we can use both.</p>
-    </div>
-    <div class="feature-container">
-      <img src="https://www.graycelltech.com/wp-content/uploads/2015/06/GCT-HTML5.jpg" alt="Flexbox Feature">
-      <h2>Basic HTML5</h2>
-      <p>This pen contains basic html to setup the page to display the responsive navbar.</p>
-    </div>
-  </section>
+
 </div>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">Ankit | Data Analyst</div>
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="work.html">Work Experience</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
 
-  <!-- Hero Section -->
+<!-- PURE JS -->
+<script>
+  const mobileMenu = document.getElementById("mobile-menu");
+  const navMenu = document.querySelector(".navbar ul");
 
-  <section class="hero">
-    <img src="assets/profile.jpg" alt="Profile" class="profile-pic">
-    <h1>Hi, I'm Ankit 👋</h1>
-    <p>A passionate Data Analyst turning raw data into actionable insights.</p>
-    <a href="projects.html" class="btn">See My Projects</a>
-  </section>
-
-  <!-- About Section -->
-
-  <section class="about">
-    <h2>About Me</h2>
-    <p>I specialize in SQL, Python, and data visualization tools like Power BI and Looker Studio. I love turning raw data into meaningful insights that help businesses make informed decisions.</p>
-  </section>
-
-  <!-- Skills Section -->
-
-  <section class="skills">
-    <h2>Skills</h2>
-    <div class="skill-list">
-      <span>SQL</span>
-      <span>Python (Pandas, NumPy, Matplotlib)</span>
-      <span>Power BI</span>
-      <span>Looker Studio</span>
-      <span>Data Analysis</span>
-      <span>Dashboarding & Reporting</span>
-    </div>
-  </section>
-
-  <!-- Carousel Section -->
-
-  <section class="carousel-section">
-    <h2>Featured Projects</h2>
-    <div class="carousel" id="carousel">
-      <div class="carousel-item active">
-        <a href="project1.html"><img src="assets/images/sql_project1_thumb.jpg" alt="SQL Project 1"></a>
-        <p>SQL Project 1: Sales Insights</p>
-      </div>
-      <div class="carousel-item">
-        <a href="project2.html"><img src="assets/images/sql_project2_thumb.jpg" alt="SQL Project 2"></a>
-        <p>SQL Project 2: Customer Segmentation</p>
-      </div>
-      <div class="carousel-item">
-        <a href="projects.html"><img src="assets/images/python_project_thumb.jpg" alt="Python Project"></a>
-        <p>Python Data Analysis Project</p>
-      </div>
-      <div class="carousel-item">
-        <a href="projects.html"><img src="assets/images/powerbi_project_thumb.jpg" alt="Power BI Project"></a>
-        <p>Power BI Dashboard Project</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Teaser -->
-
-  <section class="contact-teaser">
-    <h2>Get in Touch</h2>
-    <p>I'm always open to discussing data projects or career opportunities. Feel free to reach out!</p>
-    <a href="contact.html" class="btn">Contact Me</a>
-  </section>
-
-  <script src="js/main.js"></script>
+  mobileMenu.addEventListener("click", () => {
+    mobileMenu.classList.toggle("is-active");
+    navMenu.classList.toggle("mobile-nav");
+  });
+</script>
 
 </body>
 </html>
