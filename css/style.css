@@ -150,6 +150,11 @@
   .search-input {
     display: none;
   }
+
+  section {
+    max-width: fit-content;
+    text-align: center;
+  }
 }
 
 .logo {
@@ -161,10 +166,83 @@
   font-weight: 400;
   font-style: normal;
 }
-#ankit{
+
+#ankit {
   color: #9290C3;
 }
 
-#dev{
+#dev {
   color: #4b2574;
+}
+
+/* vibe coding css for hero section */
+.hero {
+  min-height: 100vh;
+  min-width: 100%;
+  /* Full screen height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  background: #0f031c;
+}
+
+.hero-container {
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 0;
+  /* Enables mobile stacking */
+}
+
+.hero-text {
+  margin: 20px;
+  flex: 1;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.hero-img {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-img img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+  display: block;
+}
+.hero-img::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20%; /* how much fade you want */
+  pointer-events: none;
+
+  background: linear-gradient(to bottom,
+              rgba(255,255,255,0) 0%,
+              #0f031c 100%);
+}
+
+/* —— Mobile Responsive —— */
+@media(max-width: 768px) {
+  .hero-container {
+    flex-direction: column;
+    /* Stack vertically */
+    text-align: center;
+  }
+
+  .hero-text {
+    text-align: center;
+    font-size: 24px;
+  }
 }
