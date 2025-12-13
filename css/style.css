@@ -104,8 +104,7 @@ nav {
   background: #490b8b;
   color: white;
 }
-
-/* Hero Section */
+/* Hero Section with Animations */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -116,10 +115,18 @@ nav {
   background: linear-gradient(to bottom, #0f031c, #1a0533, #0f031c);
 }
 
+.hero > div {
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 0.3s forwards;
+}
+
 .hero h1 {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
   line-height: 1.2;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease-out 0.5s forwards;
 }
 
 .hero .gradient-text {
@@ -133,6 +140,16 @@ nav {
   font-size: 1.25rem;
   color: #d1d5db;
   margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hero p:nth-of-type(1) {
+  animation: fadeInUp 0.8s ease-out 0.8s forwards;
+}
+
+.hero p:nth-of-type(2) {
+  animation: fadeInUp 0.8s ease-out 1s forwards;
 }
 
 .contact-btn {
@@ -146,6 +163,9 @@ nav {
   cursor: pointer;
   margin-top: 2rem;
   transition: all 0.3s;
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  animation: fadeInScale 0.8s ease-out 1.3s forwards;
 }
 
 .contact-btn:hover {
@@ -153,14 +173,41 @@ nav {
   box-shadow: 0 0 30px rgba(73, 11, 139, 0.5);
 }
 
-/* Skills Section */
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+@keyframes fadeInScale {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .hero h1 {
+    font-size: 4rem;
+  }
+}
+
+/* Skills Section */
 /* Enhanced Skills Section */
 .skills-section {
     padding: 5rem 1rem;
     background: #0f031c;
     position: relative;
     overflow: hidden;
+}
+
+.skills-section .section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
 }
 
 .skills-container {
@@ -182,7 +229,7 @@ nav {
     justify-content: center;
 }
 
-/* Core/Featured Skills - Center and Large */
+/* Core/Featured Skills - Triangle Formation */
 .skill-card.core {
     position: absolute;
     width: 180px;
@@ -209,26 +256,26 @@ nav {
     border-color: #fff;
 }
 
-/* Position core skills in center */
-.skill-card.core:nth-child(1) { /* DSA */
+/* Triangle Formation: 1 at top, 2 at bottom */
+.skill-card.core:nth-child(1) { /* DSA - Top of triangle */
     left: 50%;
-    top: 50%;
+    top: 30%;
     transform: translate(-50%, -50%);
 }
 
-.skill-card.core:nth-child(2) { /* Python */
-    left: calc(50% - 200px);
-    top: 50%;
+.skill-card.core:nth-child(2) { /* Python - Bottom Left */
+    left: calc(50% - 180px);
+    top: 60%;
     transform: translate(-50%, -50%);
 }
 
-.skill-card.core:nth-child(3) { /* Advanced SQL */
-    left: calc(50% + 200px);
-    top: 50%;
+.skill-card.core:nth-child(3) { /* Advanced SQL - Bottom Right */
+    left: calc(50% + 180px);
+    top: 60%;
     transform: translate(-50%, -50%);
 }
 
-/* Supporting Skills - Scattered Around */
+/* Supporting Skills - Scattered Around Triangle */
 .skill-card.support {
     position: absolute;
     width: 120px;
@@ -255,35 +302,35 @@ nav {
     box-shadow: 0 10px 40px rgba(73, 11, 139, 0.5);
 }
 
-/* Scatter supporting skills around the core */
-.skill-card.support:nth-child(4) { /* Advanced Excel */
-    left: 15%;
+/* Scatter supporting skills around the triangle */
+.skill-card.support:nth-child(4) { /* Advanced Excel - Top Left */
+    left: 20%;
     top: 20%;
 }
 
-.skill-card.support:nth-child(5) { /* Google Sheets */
-    right: 15%;
-    top: 15%;
+.skill-card.support:nth-child(5) { /* Google Sheets - Top Right */
+    right: 20%;
+    top: 20%;
 }
 
-.skill-card.support:nth-child(6) { /* Looker Studio */
-    left: 10%;
-    bottom: 25%;
-}
-
-.skill-card.support:nth-child(7) { /* Power BI */
-    right: 10%;
-    bottom: 20%;
-}
-
-.skill-card.support:nth-child(8) { /* Github */
-    left: 25%;
-    top: 45%;
-}
-
-.skill-card.support:nth-child(9) { /* AI */
-    right: 25%;
+.skill-card.support:nth-child(6) { /* Looker Studio - Left Side */
+    left: 8%;
     top: 50%;
+}
+
+.skill-card.support:nth-child(7) { /* Power BI - Right Side */
+    right: 8%;
+    top: 50%;
+}
+
+.skill-card.support:nth-child(8) { /* Github - Bottom Left */
+    left: 18%;
+    bottom: 15%;
+}
+
+.skill-card.support:nth-child(9) { /* AI - Bottom Right */
+    right: 18%;
+    bottom: 15%;
 }
 
 .skill-card p {
@@ -334,7 +381,7 @@ nav {
 /* Mobile responsive */
 @media (max-width: 768px) {
     .skills-grid {
-        height: 500px;
+        height: 550px;
     }
 
     .skill-card.core {
@@ -344,12 +391,20 @@ nav {
         padding: 1.5rem;
     }
 
-    .skill-card.core:nth-child(2) { /* Python */
-        left: calc(50% - 150px);
+    /* Triangle on mobile */
+    .skill-card.core:nth-child(1) { /* DSA - Top */
+        left: 38%;
+        top: 20%;
     }
 
-    .skill-card.core:nth-child(3) { /* Advanced SQL */
-        left: calc(50% + 150px);
+    .skill-card.core:nth-child(2) { /* Python - Bottom Left */
+        left: calc(50% - 140px);
+        top: 45%;
+    }
+
+    .skill-card.core:nth-child(3) { /* Advanced SQL - Bottom Right */
+        left: calc(28% + 140px);
+        top: 45%;
     }
 
     .skill-card.support {
@@ -360,39 +415,39 @@ nav {
     }
 
     .skill-card.support:nth-child(4) {
-        left: 5%;
-        top: 10%;
+        left: 14%;
+        top: 27%;
     }
 
     .skill-card.support:nth-child(5) {
-        right: 5%;
-        top: 8%;
+        right: 8%;
+        top: 27%;
     }
 
     .skill-card.support:nth-child(6) {
-        left: 8%;
-        bottom: 15%;
+        left: 43%;
+        top: 70%;
     }
 
     .skill-card.support:nth-child(7) {
-        right: 8%;
-        bottom: 12%;
+        right: 38%;
+        top: 0%;
     }
 
     .skill-card.support:nth-child(8) {
-        left: 20%;
-        top: 40%;
+        left: 12%;
+        bottom: 10%;
     }
 
     .skill-card.support:nth-child(9) {
-        right: 20%;
-        top: 45%;
+        right: 10%;
+        bottom: 10%;
     }
 }
 
 @media (max-width: 480px) {
     .skills-grid {
-        height: 450px;
+        height: 500px;
     }
 
     .skill-card.core {
@@ -402,12 +457,19 @@ nav {
         padding: 1rem;
     }
 
+    /* Tighter triangle on small screens */
+    .skill-card.core:nth-child(1) {
+        top: 22%;
+    }
+
     .skill-card.core:nth-child(2) {
-        left: calc(50% - 120px);
+        left: calc(50% - 110px);
+        top: 52%;
     }
 
     .skill-card.core:nth-child(3) {
-        left: calc(50% + 120px);
+        left: calc(50% + 110px);
+        top: 52%;
     }
 
     .skill-card.support {
@@ -416,8 +478,37 @@ nav {
         font-size: 0.65rem;
         padding: 0.75rem;
     }
-}
 
+    .skill-card.support:nth-child(4) {
+        left: 5%;
+        top: 12%;
+    }
+
+    .skill-card.support:nth-child(5) {
+        right: 5%;
+        top: 12%;
+    }
+
+    .skill-card.support:nth-child(6) {
+        left: 3%;
+        top: 42%;
+    }
+
+    .skill-card.support:nth-child(7) {
+        right: 3%;
+        top: 42%;
+    }
+
+    .skill-card.support:nth-child(8) {
+        left: 10%;
+        bottom: 10%;
+    }
+
+    .skill-card.support:nth-child(9) {
+        right: 10%;
+        bottom: 10%;
+    }
+}
 
 
 /* .skills-section {
@@ -477,6 +568,16 @@ nav {
 } */
 
 /* Projects Carousel */
+.projects-section .section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}
 .projects-section {
   padding: 5rem 1rem;
   background: linear-gradient(to bottom, #0f031c, #1a0533);
