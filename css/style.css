@@ -104,6 +104,54 @@ nav {
   background: #490b8b;
   color: white;
 }
+
+/* Mobile Menu Animation */
+.mobile-menu {
+  /* Remove 'display: none' so we can animate it */
+  display: block;
+  
+  /* Initial State (Closed) */
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden; /* Ensures content doesn't spill out when closing */
+  
+  /* Retain your style */
+  background: #0f031c;
+  border-bottom: 1px solid rgba(73, 11, 139, 0.3);
+  
+  /* Animate height, opacity, and padding smoothly */
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Remove vertical padding when closed so it collapses fully */
+  padding: 0 1rem; 
+}
+
+.mobile-menu.active {
+  /* Final State (Open) */
+  max-height: 400px; /* A safe height that fits all your links */
+  opacity: 1;
+  padding: 1rem; /* Re-add padding when open */
+  border-bottom-color: #490b8b;
+}
+
+/* Ensure links inside don't interfere when hidden */
+.mobile-menu a {
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: all 0.7s ease;
+}
+
+/* Stagger animation for links when menu opens */
+.mobile-menu.active a {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Add delays for each link so they cascade in */
+.mobile-menu.active a:nth-child(1) { transition-delay: 0.2s; }
+.mobile-menu.active a:nth-child(2) { transition-delay: 0.4s; }
+.mobile-menu.active a:nth-child(3) { transition-delay: 0.6s; }
+.mobile-menu.active a:nth-child(4) { transition-delay: 0.8s; }
 /* Hero Section with Animations */
 .hero {
   min-height: 100vh;
@@ -196,376 +244,105 @@ nav {
 }
 
 /* Skills Section */
-/* Enhanced Skills Section */
+
+/* Skills Section - Categorized Layout */
 .skills-section {
-    padding: 5rem 1rem;
-    background: #0f031c;
-    position: relative;
-    overflow: hidden;
-}
-
-.skills-section .section-title {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 3rem;
-}
-
-.skills-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    position: relative;
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.skills-grid {
-    position: relative;
-    width: 100%;
-    height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Core/Featured Skills - Triangle Formation */
-.skill-card.core {
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #490b8b, #54007b);
-    padding: 2rem;
-    border-radius: 50%;
-    border: 2px solid #490b8b;
-    text-align: center;
-    font-weight: 700;
-    font-size: 1.125rem;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    box-shadow: 0 10px 40px rgba(73, 11, 139, 0.4);
-    z-index: 10;
-}
-
-.skill-card.core:hover {
-    transform: scale(1.15) rotate(5deg);
-    box-shadow: 0 20px 60px rgba(73, 11, 139, 0.6);
-    border-color: #fff;
-}
-
-/* Triangle Formation: 1 at top, 2 at bottom */
-.skill-card.core:nth-child(1) { /* DSA - Top of triangle */
-    left: 50%;
-    top: 30%;
-    transform: translate(-50%, -50%);
-}
-
-.skill-card.core:nth-child(2) { /* Python - Bottom Left */
-    left: calc(50% - 180px);
-    top: 60%;
-    transform: translate(-50%, -50%);
-}
-
-.skill-card.core:nth-child(3) { /* Advanced SQL - Bottom Right */
-    left: calc(50% + 180px);
-    top: 60%;
-    transform: translate(-50%, -50%);
-}
-
-/* Supporting Skills - Scattered Around Triangle */
-.skill-card.support {
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(to bottom right, #1a0533, #0f031c);
-    padding: 1.25rem;
-    border-radius: 50%;
-    border: 1px solid rgba(73, 11, 139, 0.4);
-    text-align: center;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    box-shadow: 0 5px 20px rgba(73, 11, 139, 0.2);
-}
-
-.skill-card.support:hover {
-    transform: scale(1.2) rotate(-5deg);
-    background: linear-gradient(135deg, rgba(73, 11, 139, 0.3), rgba(84, 0, 123, 0.3));
-    border-color: #490b8b;
-    box-shadow: 0 10px 40px rgba(73, 11, 139, 0.5);
-}
-
-/* Scatter supporting skills around the triangle */
-.skill-card.support:nth-child(4) { /* Advanced Excel - Top Left */
-    left: 20%;
-    top: 20%;
-}
-
-.skill-card.support:nth-child(5) { /* Google Sheets - Top Right */
-    right: 20%;
-    top: 20%;
-}
-
-.skill-card.support:nth-child(6) { /* Looker Studio - Left Side */
-    left: 8%;
-    top: 50%;
-}
-
-.skill-card.support:nth-child(7) { /* Power BI - Right Side */
-    right: 8%;
-    top: 50%;
-}
-
-.skill-card.support:nth-child(8) { /* Github - Bottom Left */
-    left: 18%;
-    bottom: 15%;
-}
-
-.skill-card.support:nth-child(9) { /* AI - Bottom Right */
-    right: 18%;
-    bottom: 15%;
-}
-
-.skill-card p {
-    position: relative;
-    z-index: 10;
-    margin: 0;
-}
-
-/* Add floating animation */
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-.skill-card.support:nth-child(4) {
-    animation: float 3s ease-in-out infinite;
-}
-
-.skill-card.support:nth-child(5) {
-    animation: float 4s ease-in-out infinite;
-    animation-delay: 0.5s;
-}
-
-.skill-card.support:nth-child(6) {
-    animation: float 3.5s ease-in-out infinite;
-    animation-delay: 1s;
-}
-
-.skill-card.support:nth-child(7) {
-    animation: float 4.5s ease-in-out infinite;
-    animation-delay: 1.5s;
-}
-
-.skill-card.support:nth-child(8) {
-    animation: float 3.8s ease-in-out infinite;
-    animation-delay: 0.8s;
-}
-
-.skill-card.support:nth-child(9) {
-    animation: float 4.2s ease-in-out infinite;
-    animation-delay: 1.2s;
-}
-
-/* Mobile responsive */
-@media (max-width: 1100px) {
-    .skills-grid {
-        height: 550px;
-    }
-
-    .skill-card.core {
-        width: 140px;
-        height: 140px;
-        font-size: 1rem;
-        padding: 1.5rem;
-    }
-
-    /* Triangle on mobile */
-    .skill-card.core:nth-child(1) { /* DSA - Top */
-        left: 38%;
-        top: 20%;
-    }
-
-    .skill-card.core:nth-child(2) { /* Python - Bottom Left */
-        left: calc(50% - 140px);
-        top: 45%;
-    }
-
-    .skill-card.core:nth-child(3) { /* Advanced SQL - Bottom Right */
-        left: calc(28% + 140px);
-        top: 45%;
-    }
-
-    .skill-card.support {
-        width: 90px;
-        height: 90px;
-        font-size: 0.75rem;
-        padding: 1rem;
-    }
-
-    .skill-card.support:nth-child(4) {
-        left: 14%;
-        top: 27%;
-    }
-
-    .skill-card.support:nth-child(5) {
-        right: 8%;
-        top: 27%;
-    }
-
-    .skill-card.support:nth-child(6) {
-        left: 43%;
-        top: 70%;
-    }
-
-    .skill-card.support:nth-child(7) {
-        right: 38%;
-        top: 0%;
-    }
-
-    .skill-card.support:nth-child(8) {
-        left: 12%;
-        bottom: 10%;
-    }
-
-    .skill-card.support:nth-child(9) {
-        right: 10%;
-        bottom: 10%;
-    }
-}
-
-@media (max-width: 480px) {
-    .skills-grid {
-        height: 500px;
-    }
-
-    .skill-card.core {
-        width: 110px;
-        height: 110px;
-        font-size: 0.875rem;
-        padding: 1rem;
-    }
-
-    /* Tighter triangle on small screens */
-    .skill-card.core:nth-child(1) {
-        top: 22%;
-    }
-
-    .skill-card.core:nth-child(2) {
-        left: calc(50% - 110px);
-        top: 52%;
-    }
-
-    .skill-card.core:nth-child(3) {
-        left: calc(50% + 110px);
-        top: 52%;
-    }
-
-    .skill-card.support {
-        width: 70px;
-        height: 70px;
-        font-size: 0.65rem;
-        padding: 0.75rem;
-    }
-
-    .skill-card.support:nth-child(4) {
-        left: 5%;
-        top: 12%;
-    }
-
-    .skill-card.support:nth-child(5) {
-        right: 5%;
-        top: 12%;
-    }
-
-    .skill-card.support:nth-child(6) {
-        left: 3%;
-        top: 42%;
-    }
-
-    .skill-card.support:nth-child(7) {
-        right: 3%;
-        top: 42%;
-    }
-
-    .skill-card.support:nth-child(8) {
-        left: 10%;
-        bottom: 10%;
-    }
-
-    .skill-card.support:nth-child(9) {
-        right: 10%;
-        bottom: 10%;
-    }
-}
-
-
-/* .skills-section {
   padding: 5rem 1rem;
   background: #0f031c;
+  position: relative;
 }
 
-.section-title {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 3rem;
-}
-
-.skills-grid {
-  max-width: 1280px;
+.skills-wrapper {
+  max-width: 1000px; /* Controlled width for better readability */
   margin: 0 auto;
+}
+
+.skills-categorized-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  gap: 2rem;
 }
 
-.skill-card {
-  background: linear-gradient(to bottom right, #1a0533, #0f031c);
-  padding: 1.5rem;
-  border-radius: 0.75rem;
+/* Card Styling */
+.skill-category-card {
+  background: rgba(26, 5, 51, 0.6);
   border: 1px solid rgba(73, 11, 139, 0.3);
-  text-align: center;
-  font-weight: 600;
-  transition: all 0.3s;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-.skill-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, #490b8b, #54007b);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+  /* Initial state for animation */
   opacity: 0;
-  transition: opacity 0.3s;
-  border-radius: 0.75rem;
+  transform: translateY(30px);
 }
 
-.skill-card:hover {
-  transform: scale(1.05);
+.skill-category-card:hover {
+  border-color: #490b8b;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(73, 11, 139, 0.2);
+  background: rgba(26, 5, 51, 0.9);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1rem;
+}
+
+.card-header .icon {
+  font-size: 1.5rem;
+}
+
+.card-header h3 {
+  font-size: 1.25rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Tags Styling */
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.skill-tag {
+  background: rgba(73, 11, 139, 0.15);
+  color: #d1d5db;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(73, 11, 139, 0.2);
+  transition: all 0.3s;
+}
+
+.skill-tag:hover {
+  background: #490b8b;
+  color: #fff;
   border-color: #490b8b;
 }
 
-.skill-card:hover::before {
-  opacity: 0.1;
+/* Specific Style for Strengths */
+.skill-tag.strength {
+  background: linear-gradient(to right, rgba(73, 11, 139, 0.2), rgba(84, 0, 123, 0.2));
+  border-color: rgba(84, 0, 123, 0.4);
 }
 
-.skill-card p {
-  position: relative;
-  z-index: 10;
-} */
+/* Responsive Design */
+@media (max-width: 768px) {
+  .skills-categorized-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .skill-category-card {
+    padding: 1.5rem;
+  }
+}
+
 
 /* Projects Carousel */
 .projects-section .section-title {
@@ -579,7 +356,7 @@ nav {
   margin-bottom: 3rem;
 }
 .projects-section {
-  padding: 5rem 1rem;
+  padding: 3rem 1rem;
   background: linear-gradient(to bottom, #0f031c, #1a0533);
 }
 
@@ -851,4 +628,27 @@ footer .highlight {
   .projects-page-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+
+/* --- Animation Initial States --- */
+
+/* 1. Featured Projects Grid (Desktop) & Carousel (Mobile) */
+.projects-section .project-card {
+  opacity: 0;
+  transform: translateY(60px); /* Start 60px lower */
+  transition: all 3s cubic-bezier(0.22, 1, 0.36, 1); /* Smooth "ease-out" */
+}
+
+/* 2. About Section Elements */
+.about-section .section-title {
+  opacity: 0;
+  transform: translateY(-40px); /* Title starts slightly above */
+  transition: all 0.8s ease-out;
+}
+
+.about-section .about-content p {
+  opacity: 0;
+  transform: translateY(30px); /* Text starts slightly below */
+  transition: all 0.8s ease-out;
 }
