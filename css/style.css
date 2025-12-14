@@ -579,6 +579,10 @@ footer .highlight {
   color: #490b8b;
   font-weight: 600;
 }
+footer .highlight-lc {
+  color: #ffffa116;
+  font-weight: 600;
+}
 
 .hidden {
   display: none;
