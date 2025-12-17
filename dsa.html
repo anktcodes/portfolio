@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <title>DSA Patterns - Ankit</title>
+    <link rel="stylesheet" href="css/dsa.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <span class="logo-bracket">&lt;</span>ankitcodes.com<span
+            class="logo-bracket"
+            >/&gt;</span
+          >
+        </a>
+        <a href="index.html" class="back-btn"> ← Back to Home </a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div>
+        <h1>DSA Patterns i <span class="gradient-text">Learned</span></h1>
+        <p class="subtitle">Patterns that i deeply understand</p>
+      </div>
+    </section>
+
+    <!-- Pattern Sections -->
+    <div class="pattern-section">
+      <!-- Two Pointer Pattern -->
+      <article class="pattern-card">
+        <h2 class="pattern-title">
+          <span class="pattern-number">1</span>
+          Two Pointer Technique
+        </h2>
+
+        <div class="pattern-intro">
+          The Two Pointer technique is used when we need to process a sequence
+          (array/string) from both ends or maintain a dynamic window. Instead of
+          nested loops, we move pointers intelligently to reduce time
+          complexity.
+        </div>
+
+        <h3 class="section-heading">Problem</h3>
+        <div class="problem-statement">
+          <strong>LeetCode 167 - Two Sum II (Input Array Is Sorted)</strong>
+          <p style="margin-top: 0.75rem; color: #d1d5db">
+            Given a sorted array of integers, find two numbers such that they
+            add up to a specific target. Return their 1-based indices.
+          </p>
+        </div>
+
+        <h3 class="section-heading">Naive Approach</h3>
+        <div class="approach-box">
+          <p class="approach-title">❌ Brute Force - Why it fails</p>
+          <p style="color: #d1d5db; margin-bottom: 1rem">
+            A naive approach is to check every possible pair using two nested
+            loops. This works but compares many unnecessary pairs, leading to
+            poor performance for large inputs.
+          </p>
+          <div class="complexity">
+            <div class="complexity-item">
+              <span class="complexity-label">Time Complexity:</span>
+              <span style="color: #f87171">O(n²)</span>
+            </div>
+            <div class="complexity-item">
+              <span class="complexity-label">Space Complexity:</span>
+              <span>O(1)</span>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="section-heading">Optimized Approach</h3>
+        <div class="approach-box">
+          <p class="approach-title">✅ Two Pointer - Why it works</p>
+          <p style="color: #d1d5db; margin-bottom: 1rem">
+            Since the array is sorted, we can place one pointer at the beginning
+            and one at the end. If the sum is too large, we move the right
+            pointer left. If the sum is too small, we move the left pointer
+            right. This guarantees progress on every step without missing the
+            answer.
+          </p>
+          <div class="key-insight">
+            We eliminate entire ranges of impossible pairs in one move.
+          </div>
+          <div class="complexity">
+            <div class="complexity-item">
+              <span class="complexity-label">Time Complexity:</span>
+              <span style="color: #34d399">O(n)</span>
+            </div>
+            <div class="complexity-item">
+              <span class="complexity-label">Space Complexity:</span>
+              <span>O(1)</span>
+            </div>
+          </div>
+          <p style="color: #9ca3af; margin-top: 1rem; font-size: 0.95rem">
+            Each pointer moves at most n times.
+          </p>
+        </div>
+
+        <h3 class="section-heading">Solution Code</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">Python</span>
+          </div>
+          <pre><span class="code-keyword">class</span> <span class="code-function">Solution</span>:
+    <span class="code-keyword">def</span> <span class="code-function">twoSum</span>(self, numbers, target):
+        left, right = <span class="code-string">0</span>, <span class="code-function">len</span>(numbers) - <span class="code-string">1</span>
+        
+        <span class="code-keyword">while</span> left &lt; right:
+            current_sum = numbers[left] + numbers[right]
+            
+            <span class="code-keyword">if</span> current_sum == target:
+                <span class="code-keyword">return</span> [left + <span class="code-string">1</span>, right + <span class="code-string">1</span>]  <span class="code-comment"># 1-indexed array</span>
+            <span class="code-keyword">elif</span> current_sum &lt; target:
+                left += <span class="code-string">1</span>
+            <span class="code-keyword">else</span>:
+                right -= <span class="code-string">1</span></pre>
+        </div>
+        <p style="color: #9ca3af; font-size: 0.95rem; margin-top: 1rem">
+          This solution works because the sorted order guarantees correct
+          pointer movement.
+        </p>
+
+        <h3 class="section-heading">Visual Intuition</h3>
+        <div
+          style="
+            background: rgba(73, 11, 139, 0.1);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            margin-top: 1rem;
+          "
+        >
+          <p style="color: #d1d5db">
+            <strong>Left pointer</strong> increases the sum<br />
+            <strong>Right pointer</strong> decreases the sum
+          </p>
+        </div>
+      </article>
+
+      <!-- Placeholder for future patterns -->
+      <div style="text-align: center; padding: 3rem 1rem; color: #6b7280">
+        <p>More patterns coming soon...</p>
+        <p style="font-size: 0.9rem; margin-top: 0.5rem">
+          Sliding Window • Fast & Slow Pointers • Merge Intervals
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>This website is created by <span class="highlight">Ankit</span></p>
+      <p style="font-size: 0.875rem; margin-top: 0.5rem; color: #6b7280">
+        © 2025 All rights are yet to be reserved. XD
+      </p>
+      <p style="font-size: 0.875rem; margin-top: 0.5rem; color: #6b7280">
+        Well you have come to the end. So, here is my leetcode
+        <span style="color: #ffa216"> @anktcodes </span>
+      </p>
+    </footer>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="script/dsa.js"></script>
+  </body>
+</html>

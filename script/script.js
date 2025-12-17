@@ -257,8 +257,6 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("About section observer set up");
   }
 
-
-
   // Function to observe project cards
   function observeProjectCards() {
     const projectCards = document.querySelectorAll(
@@ -356,72 +354,128 @@ document.addEventListener("DOMContentLoaded", () => {
 /* =========================================
      1. Featured Projects Animation
      ========================================= */
-  const projectsObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          console.log("Projects section visible, animating...");
-          
-          // Select cards based on view (Grid for desktop, Carousel for mobile)
-          // We select BOTH to be safe, the browser will only animate what exists/is visible
-          const cards = entry.target.querySelectorAll(".project-card");
-          
-          cards.forEach((card, idx) => {
-            setTimeout(() => {
-              card.style.opacity = "1";
-              card.style.transform = "translateY(0)";
-            }, idx * 300); // 300ms delay between each card
-          });
+const projectsObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        console.log("Projects section visible, animating...");
 
-          projectsObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
+        // Select cards based on view (Grid for desktop, Carousel for mobile)
+        // We select BOTH to be safe, the browser will only animate what exists/is visible
+        const cards = entry.target.querySelectorAll(".project-card");
 
-  // Target the Projects Section
-  const projectsSection = document.querySelector(".projects-section");
-  if (projectsSection) {
-    projectsObserver.observe(projectsSection);
-  }
+        cards.forEach((card, idx) => {
+          setTimeout(() => {
+            card.style.opacity = "1";
+            card.style.transform = "translateY(0)";
+          }, idx * 300); // 300ms delay between each card
+        });
 
+        projectsObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.1 }
+);
 
-  /* =========================================
+// Target the Projects Section
+const projectsSection = document.querySelector(".projects-section");
+if (projectsSection) {
+  projectsObserver.observe(projectsSection);
+}
+
+/* =========================================
      2. About Section Animation
      ========================================= */
-  const aboutObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          console.log("About section visible, animating...");
-          
-          const title = entry.target.querySelector(".section-title");
-          const text = entry.target.querySelector(".about-content p");
+const aboutObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        console.log("About section visible, animating...");
 
-          // Animate Title (Immediate)
-          if (title) {
-            title.style.opacity = "1";
-            title.style.transform = "translateY(0)";
-          }
+        const title = entry.target.querySelector(".section-title");
+        const text = entry.target.querySelector(".about-content p");
 
-          // Animate Text (Delayed by 300ms)
-          if (text) {
-            setTimeout(() => {
-              text.style.opacity = "1";
-              text.style.transform = "translateY(0)";
-            }, 400);
-          }
-
-          aboutObserver.unobserve(entry.target);
+        // Animate Title (Immediate)
+        if (title) {
+          title.style.opacity = "1";
+          title.style.transform = "translateY(0)";
         }
-      });
-    },
-    { threshold: 0.3 } // Wait until 30% of the section is visible
-  );
 
-  // Target the About Section
-  const aboutSection = document.querySelector(".about-section");
-  if (aboutSection) {
-    aboutObserver.observe(aboutSection);
+        // Animate Text (Delayed by 300ms)
+        if (text) {
+          setTimeout(() => {
+            text.style.opacity = "1";
+            text.style.transform = "translateY(0)";
+          }, 400);
+        }
+
+        aboutObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.3 } // Wait until 30% of the section is visible
+);
+
+// Target the About Section
+const aboutSection = document.querySelector(".about-section");
+if (aboutSection) {
+  aboutObserver.observe(aboutSection);
+}
+
+// dsa and data analysis section links js
+// Add this to your existing script.js file
+
+// Explore Section Animations
+const exploreObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        console.log("Explore card visible, animating...");
+
+        // Initial hidden state
+        entry.target.style.opacity = "0";
+        entry.target.style.transform = "translateY(50px)";
+
+        // Stagger animation based on index
+        const delay = index * 200; // 200ms delay between cards
+
+        setTimeout(() => {
+          entry.target.style.transition =
+            "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)";
+          entry.target.style.opacity = "1";
+          entry.target.style.transform = "translateY(0)";
+        }, delay);
+
+        exploreObserver.unobserve(entry.target);
+      }
+    });
+  },
+  {
+    threshold: 0.2,
+    rootMargin: "0px 0px -50px 0px",
   }
+);
+
+// Observe explore cards
+const exploreCards = document.querySelectorAll(".explore-card");
+exploreCards.forEach((card, index) => {
+  // Add index as data attribute for stagger effect
+  card.setAttribute("data-index", index);
+  exploreObserver.observe(card);
+});
+
+// Optional: Add click animation to entire card
+exploreCards.forEach((card) => {
+  card.addEventListener("click", function (e) {
+    // If clicked element is not the button, navigate to the link
+    if (!e.target.closest(".explore-btn")) {
+      const link = this.querySelector(".explore-btn");
+      if (link) {
+        window.location.href = link.getAttribute("href");
+      }
+    }
+  });
+});
+
+console.log("Explore section animations initialized!");

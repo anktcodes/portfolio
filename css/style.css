@@ -652,3 +652,10 @@ footer .highlight {
   transform: translateY(30px); /* Text starts slightly below */
   transition: all 0.8s ease-out;
 }
+
+
+/* featured projects hidden  */
+
+#featured-projects {
+  display: none;
+}
