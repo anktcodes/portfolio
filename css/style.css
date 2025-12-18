@@ -659,3 +659,181 @@ footer .highlight {
 #featured-projects {
   display: none;
 }
+
+
+
+/* for Explore projects navigation section */
+
+/* Explore Projects Section */
+.explore-section {
+    padding: 5rem 1rem;
+    background: linear-gradient(to bottom, #0f031c, #1a0533);
+}
+
+.explore-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.explore-card {
+    background: linear-gradient(135deg, #1a0533, #0f031c);
+    border: 1px solid #490b8b;
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.explore-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, #490b8b, #54007b);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.explore-card:hover {
+    transform: translateY(-8px);
+    border-color: #54007b;
+    box-shadow: 0 20px 60px rgba(73, 11, 139, 0.3);
+}
+
+.explore-card:hover::before {
+    transform: scaleX(1);
+}
+
+.explore-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(73, 11, 139, 0.2), rgba(84, 0, 123, 0.2));
+    border: 2px solid #490b8b;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: #490b8b;
+    transition: all 0.3s ease;
+}
+
+.explore-card:hover .explore-icon {
+    background: linear-gradient(135deg, #490b8b, #54007b);
+    color: white;
+    transform: scale(1.1) rotate(5deg);
+}
+
+.explore-title {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    color: white;
+    font-weight: 700;
+}
+
+.explore-description {
+    color: #d1d5db;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+}
+
+.explore-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.tag {
+    background: rgba(73, 11, 139, 0.2);
+    border: 1px solid rgba(73, 11, 139, 0.4);
+    color: #c084fc;
+    padding: 0.4rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.explore-card:hover .tag {
+    background: rgba(73, 11, 139, 0.3);
+    border-color: #490b8b;
+}
+
+.explore-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(to right, #490b8b, #54007b);
+    color: white;
+    padding: 0.875rem 1.75rem;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.explore-btn:hover {
+    transform: translateX(4px);
+    box-shadow: 0 10px 30px rgba(73, 11, 139, 0.4);
+}
+
+.explore-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.explore-btn:hover svg {
+    transform: translateX(4px);
+}
+
+/* Card specific styles */
+.dsa-card {
+    background: linear-gradient(135deg, #1a0533, #0f031c);
+}
+
+.data-card {
+    background: linear-gradient(135deg, #0f031c, #1a0533);
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .explore-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .explore-card {
+        padding: 2rem;
+    }
+
+    .explore-title {
+        font-size: 1.5rem;
+    }
+
+    .explore-description {
+        font-size: 1rem;
+    }
+
+    .explore-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .explore-icon svg {
+        width: 40px;
+        height: 40px;
+    }
+}
