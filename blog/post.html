@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Blog Post - Ankit</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/blog.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>ankit.dev<span class="logo-bracket">/&gt;</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="blog.html" class="active">Blog</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+            <button class="menu-btn" id="menuBtn">☰</button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="../index.html">Home</a>
+            <a href="../index.html#projects">Projects</a>
+            <a href="blog.html" class="active">Blog</a>
+            <a href="../index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Post Content -->
+    <article class="post-container">
+        <div class="post-header">
+            <a href="blog.html" class="back-link">
+                ← Back to Blog
+            </a>
+            <div id="postMeta" class="post-meta">
+                <!-- Meta will be loaded here -->
+            </div>
+            <h1 id="postTitle" class="post-title">Loading...</h1>
+            <div id="postInfo" class="post-info">
+                <!-- Post info will be loaded here -->
+            </div>
+        </div>
+
+        <div id="postContent" class="post-content">
+            <!-- Post content will be loaded here -->
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <p>Loading post...</p>
+            </div>
+        </div>
+
+        <div id="postFooter" class="post-footer" style="display: none;">
+            <div class="post-tags" id="postTags">
+                <!-- Tags will be loaded here -->
+            </div>
+            <div class="share-section">
+                <p class="share-text">Share this post:</p>
+                <div class="share-buttons">
+                    <button class="share-btn" onclick="shareOnTwitter()" title="Share on Twitter">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                        </svg>
+                    </button>
+                    <button class="share-btn" onclick="shareOnLinkedIn()" title="Share on LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                            <circle cx="4" cy="4" r="2"/>
+                        </svg>
+                    </button>
+                    <button class="share-btn" onclick="copyLink()" title="Copy link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/>
+                            <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- Related Posts -->
+    <section class="related-posts" id="relatedPosts" style="display: none;">
+        <div class="blog-container">
+            <h2 class="section-title">Related <span class="gradient-text">Posts</span></h2>
+            <div id="relatedGrid" class="blog-grid">
+                <!-- Related posts will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>This website is created by <span class="highlight">Ankit</span></p>
+        <p style="font-size: 0.875rem; margin-top: 0.5rem; color: #6b7280;">© 2025 All rights reserved</p>
+    </footer>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="../script/post.js"></script>
+</body>
+</html>

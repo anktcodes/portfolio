@@ -1,0 +1,143 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Understanding Time Complexity in DSA",
+      "slug": "understanding-time-complexity",
+      "date": "2025-01-15",
+      "author": "Ankit",
+      "category": "DSA",
+      "tags": ["algorithms", "complexity", "beginners"],
+      "excerpt": "A comprehensive guide to understanding Big O notation and how to analyze algorithm efficiency.",
+      "readTime": "5 min read",
+      "featured": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Time complexity is one of the most important concepts in computer science. It helps us understand how our algorithms scale as input size grows."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What is Big O Notation?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Big O notation describes the upper bound of an algorithm's runtime. It tells us the worst-case scenario of how our algorithm performs."
+        },
+        {
+          "type": "list",
+          "items": [
+            "O(1) - Constant time: Same time regardless of input size",
+            "O(log n) - Logarithmic: Divides problem in half each step",
+            "O(n) - Linear: Time grows directly with input",
+            "O(n log n) - Log-linear: Common in efficient sorting",
+            "O(n²) - Quadratic: Nested loops over input"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Real World Example"
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "# O(n) - Linear time\ndef find_max(arr):\n    max_val = arr[0]\n    for num in arr:\n        if num > max_val:\n            max_val = num\n    return max_val"
+        },
+        {
+          "type": "paragraph",
+          "text": "This function has O(n) complexity because we check every element once. No matter what, we need to look at all elements to find the maximum."
+        },
+        {
+          "type": "callout",
+          "style": "tip",
+          "text": "Always aim for the most efficient solution, but remember: readability matters too. Sometimes O(n) is perfectly fine."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Building Interactive Dashboards with Power BI",
+      "slug": "power-bi-dashboards",
+      "date": "2025-01-12",
+      "author": "Ankit",
+      "category": "Data Analysis",
+      "tags": ["power-bi", "visualization", "business-intelligence"],
+      "excerpt": "Learn how to create stunning, interactive dashboards that tell compelling data stories.",
+      "readTime": "8 min read",
+      "featured": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Power BI is a powerful tool for transforming raw data into actionable insights. In this post, I'll share my approach to building dashboards that actually get used."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Key Principles"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Start with the business question, not the data",
+            "Keep it simple - less is more",
+            "Use consistent color schemes",
+            "Make it interactive but not overwhelming",
+            "Always consider mobile users"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "My Dashboard Design Process"
+        },
+        {
+          "type": "paragraph",
+          "text": "I follow a structured approach: understand requirements, sketch layouts, build iteratively, and gather feedback. This ensures the final dashboard meets actual business needs."
+        },
+        {
+          "type": "callout",
+          "style": "warning",
+          "text": "Avoid the 'Excel in Power BI' trap - don't cram every metric onto one page. Create multiple focused views instead."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "SQL Window Functions Explained",
+      "slug": "sql-window-functions",
+      "date": "2025-01-10",
+      "author": "Ankit",
+      "category": "SQL",
+      "tags": ["sql", "database", "advanced"],
+      "excerpt": "Master window functions to write more elegant and efficient SQL queries.",
+      "readTime": "6 min read",
+      "featured": false,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Window functions are one of the most powerful features in SQL, yet many analysts don't use them. Let's change that."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What are Window Functions?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Unlike aggregate functions that collapse rows, window functions perform calculations across rows while keeping all rows in the result set."
+        },
+        {
+          "type": "code",
+          "language": "sql",
+          "code": "SELECT \n    employee_name,\n    salary,\n    AVG(salary) OVER (PARTITION BY department) as dept_avg,\n    RANK() OVER (ORDER BY salary DESC) as salary_rank\nFROM employees;"
+        },
+        {
+          "type": "paragraph",
+          "text": "This query shows each employee's salary alongside their department average and overall rank - all without grouping!"
+        }
+      ]
+    }
+  ]
+}
