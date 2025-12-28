@@ -1,7 +1,7 @@
 # Developer Portfolio – Ankit
 
 A personal developer portfolio website showcasing my skills, projects, and learning journey across web development, data analysis, and problem-solving.
-This portfolio is designed to be simple, fast, and scalable, with room to grow as my skills evolve.
+This portfolio is designed to be simple, fast, and scalable, with room to grow as my skills improve.
 
 🔗 Live Portfolio: (add link here if deployed)
 🔗 GitHub: https://github.com/anktcodes
