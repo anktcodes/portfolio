@@ -4,7 +4,7 @@ A personal developer portfolio website showcasing my skills, projects, and learn
 
 This portfolio is designed to be simple, fast, and scalable, with room to grow as my skills improve.
 
-🔗 Live Portfolio: anktcodes.github.io/portfolio
+🔗 Live Portfolio: https://anktcodes.github.io/portfolio
 
 # 📌 Purpose of This Project
 This portfolio serves three goals:
