@@ -1,143 +1,196 @@
 {
-  "posts": [
+  "id": 4,
+  "title": "Getting Started with Flask: Building Your First Python Web Application",
+  "slug": "getting-started-flask-python-web-app",
+  "date": "2025-01-16",
+  "author": "Ankit",
+  "category": "Web Development",
+  "tags": ["flask", "python", "web-development", "backend", "tutorial"],
+  "excerpt": "Learn Flask fundamentals and build your first Python web application. A beginner-friendly guide covering routing, templates, forms, and deployment.",
+  "readTime": "10 min read",
+  "featured": true,
+  "content": [
     {
-      "id": 1,
-      "title": "Understanding Time Complexity in DSA",
-      "slug": "understanding-time-complexity",
-      "date": "2025-01-15",
-      "author": "Ankit",
-      "category": "DSA",
-      "tags": ["algorithms", "complexity", "beginners"],
-      "excerpt": "A comprehensive guide to understanding Big O notation and how to analyze algorithm efficiency.",
-      "readTime": "5 min read",
-      "featured": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Time complexity is one of the most important concepts in computer science. It helps us understand how our algorithms scale as input size grows."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "What is Big O Notation?"
-        },
-        {
-          "type": "paragraph",
-          "text": "Big O notation describes the upper bound of an algorithm's runtime. It tells us the worst-case scenario of how our algorithm performs."
-        },
-        {
-          "type": "list",
-          "items": [
-            "O(1) - Constant time: Same time regardless of input size",
-            "O(log n) - Logarithmic: Divides problem in half each step",
-            "O(n) - Linear: Time grows directly with input",
-            "O(n log n) - Log-linear: Common in efficient sorting",
-            "O(n²) - Quadratic: Nested loops over input"
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Real World Example"
-        },
-        {
-          "type": "code",
-          "language": "python",
-          "code": "# O(n) - Linear time\ndef find_max(arr):\n    max_val = arr[0]\n    for num in arr:\n        if num > max_val:\n            max_val = num\n    return max_val"
-        },
-        {
-          "type": "paragraph",
-          "text": "This function has O(n) complexity because we check every element once. No matter what, we need to look at all elements to find the maximum."
-        },
-        {
-          "type": "callout",
-          "style": "tip",
-          "text": "Always aim for the most efficient solution, but remember: readability matters too. Sometimes O(n) is perfectly fine."
-        }
+      "type": "paragraph",
+      "text": "Flask is a lightweight, flexible Python web framework that makes building web applications incredibly simple. Unlike heavier frameworks like Django, Flask gives you just what you need to get started, letting you add features as your application grows."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Choose Flask?"
+    },
+    {
+      "type": "paragraph",
+      "text": "I chose Flask for my learning journey because it strikes the perfect balance between simplicity and power. It's minimalist enough to understand quickly but robust enough to build production-ready applications."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Lightweight and easy to learn - perfect for beginners",
+        "Flexible architecture - add only what you need",
+        "Excellent documentation and strong community support",
+        "Built-in development server and debugger",
+        "Jinja2 templating engine for dynamic HTML",
+        "RESTful request dispatching for building APIs"
       ]
     },
     {
-      "id": 2,
-      "title": "Building Interactive Dashboards with Power BI",
-      "slug": "power-bi-dashboards",
-      "date": "2025-01-12",
-      "author": "Ankit",
-      "category": "Data Analysis",
-      "tags": ["power-bi", "visualization", "business-intelligence"],
-      "excerpt": "Learn how to create stunning, interactive dashboards that tell compelling data stories.",
-      "readTime": "8 min read",
-      "featured": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Power BI is a powerful tool for transforming raw data into actionable insights. In this post, I'll share my approach to building dashboards that actually get used."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Key Principles"
-        },
-        {
-          "type": "list",
-          "items": [
-            "Start with the business question, not the data",
-            "Keep it simple - less is more",
-            "Use consistent color schemes",
-            "Make it interactive but not overwhelming",
-            "Always consider mobile users"
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "My Dashboard Design Process"
-        },
-        {
-          "type": "paragraph",
-          "text": "I follow a structured approach: understand requirements, sketch layouts, build iteratively, and gather feedback. This ensures the final dashboard meets actual business needs."
-        },
-        {
-          "type": "callout",
-          "style": "warning",
-          "text": "Avoid the 'Excel in Power BI' trap - don't cram every metric onto one page. Create multiple focused views instead."
-        }
+      "type": "heading",
+      "level": 2,
+      "text": "Installing Flask"
+    },
+    {
+      "type": "paragraph",
+      "text": "Getting started with Flask is straightforward. First, create a virtual environment to keep your project dependencies isolated, then install Flask using pip."
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# Create virtual environment\npython -m venv venv\n\n# Activate virtual environment\n# On Windows:\nvenv\\Scripts\\activate\n# On Mac/Linux:\nsource venv/bin/activate\n\n# Install Flask\npip install flask"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Your First Flask Application"
+    },
+    {
+      "type": "paragraph",
+      "text": "Let's build a simple Flask app. This minimal example shows how quick it is to get a web server running with Flask."
+    },
+    {
+      "type": "code",
+      "language": "python",
+      "code": "from flask import Flask\n\napp = Flask(__name__)\n\n@app.route('/')\ndef home():\n    return 'Hello, Flask!'\n\n@app.route('/about')\ndef about():\n    return 'This is my Flask learning journey'\n\nif __name__ == '__main__':\n    app.run(debug=True)"
+    },
+    {
+      "type": "paragraph",
+      "text": "Save this as app.py and run it with 'python app.py'. Your web server is now running at http://localhost:5000. That's it - you've built your first Flask app!"
+    },
+    {
+      "type": "callout",
+      "style": "tip",
+      "text": "Always use debug=True during development. It provides detailed error messages and auto-reloads your app when you make changes."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Understanding Flask Routes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Routes are URL patterns that Flask uses to determine which function to call. The @app.route() decorator tells Flask what URL should trigger a specific function."
+    },
+    {
+      "type": "code",
+      "language": "python",
+      "code": "@app.route('/user/<username>')\ndef show_user(username):\n    return f'User: {username}'\n\n@app.route('/post/<int:post_id>')\ndef show_post(post_id):\n    return f'Post ID: {post_id}'\n\n@app.route('/hello/<name>')\ndef hello_name(name):\n    return f'Hello, {name.title()}!'"
+    },
+    {
+      "type": "paragraph",
+      "text": "Dynamic routes let you capture values from URLs. Flask automatically converts the captured value to the specified type (string by default, or int, float, path, etc.)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Working with Templates"
+    },
+    {
+      "type": "paragraph",
+      "text": "Templates separate your HTML from Python code, making your application cleaner and more maintainable. Flask uses Jinja2, a powerful templating engine that lets you embed Python-like expressions in HTML."
+    },
+    {
+      "type": "code",
+      "language": "python",
+      "code": "from flask import Flask, render_template\n\n@app.route('/profile/<username>')\ndef profile(username):\n    user_data = {\n        'name': username,\n        'posts': 42,\n        'followers': 1337\n    }\n    return render_template('profile.html', user=user_data)"
+    },
+    {
+      "type": "paragraph",
+      "text": "Create a 'templates' folder in your project directory and add profile.html. Flask automatically looks for templates in this folder."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Handling Forms and User Input"
+    },
+    {
+      "type": "paragraph",
+      "text": "Flask makes it easy to handle form submissions and process user data. Here's how to create a simple contact form."
+    },
+    {
+      "type": "code",
+      "language": "python",
+      "code": "from flask import Flask, request, render_template\n\n@app.route('/contact', methods=['GET', 'POST'])\ndef contact():\n    if request.method == 'POST':\n        name = request.form['name']\n        email = request.form['email']\n        message = request.form['message']\n        \n        # Process the form data\n        print(f'Contact from {name}: {message}')\n        return 'Thank you for your message!'\n    \n    return render_template('contact.html')"
+    },
+    {
+      "type": "callout",
+      "style": "warning",
+      "text": "Always validate and sanitize user input before processing it. Never trust data coming from forms - implement proper validation and consider using Flask-WTF for form handling."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Key Flask Features I'm Learning"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Blueprint system for organizing large applications into modules",
+        "SQLAlchemy integration for database operations",
+        "Flask-Login for user authentication and session management",
+        "Error handling and custom error pages",
+        "Flask extensions ecosystem (Flask-Mail, Flask-RESTful, etc.)",
+        "Deployment strategies for production environments"
       ]
     },
     {
-      "id": 3,
-      "title": "SQL Window Functions Explained",
-      "slug": "sql-window-functions",
-      "date": "2025-01-10",
-      "author": "Ankit",
-      "category": "SQL",
-      "tags": ["sql", "database", "advanced"],
-      "excerpt": "Master window functions to write more elegant and efficient SQL queries.",
-      "readTime": "6 min read",
-      "featured": false,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Window functions are one of the most powerful features in SQL, yet many analysts don't use them. Let's change that."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "What are Window Functions?"
-        },
-        {
-          "type": "paragraph",
-          "text": "Unlike aggregate functions that collapse rows, window functions perform calculations across rows while keeping all rows in the result set."
-        },
-        {
-          "type": "code",
-          "language": "sql",
-          "code": "SELECT \n    employee_name,\n    salary,\n    AVG(salary) OVER (PARTITION BY department) as dept_avg,\n    RANK() OVER (ORDER BY salary DESC) as salary_rank\nFROM employees;"
-        },
-        {
-          "type": "paragraph",
-          "text": "This query shows each employee's salary alongside their department average and overall rank - all without grouping!"
-        }
+      "type": "heading",
+      "level": 2,
+      "text": "Building RESTful APIs with Flask"
+    },
+    {
+      "type": "paragraph",
+      "text": "Flask excels at building APIs. Here's a simple example of a REST API endpoint that returns JSON data."
+    },
+    {
+      "type": "code",
+      "language": "python",
+      "code": "from flask import Flask, jsonify\n\n@app.route('/api/users')\ndef get_users():\n    users = [\n        {'id': 1, 'name': 'Alice'},\n        {'id': 2, 'name': 'Bob'}\n    ]\n    return jsonify(users)\n\n@app.route('/api/user/<int:user_id>')\ndef get_user(user_id):\n    user = {'id': user_id, 'name': 'User ' + str(user_id)}\n    return jsonify(user)"
+    },
+    {
+      "type": "paragraph",
+      "text": "The jsonify() function converts Python dictionaries to JSON responses automatically, setting the correct content-type headers."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next Steps in My Flask Journey"
+    },
+    {
+      "type": "paragraph",
+      "text": "I'm currently diving deeper into Flask by building real projects. Here's what I'm focusing on next: implementing user authentication systems, connecting Flask to databases with SQLAlchemy, building complete CRUD applications, and exploring deployment options like Heroku and AWS."
+    },
+    {
+      "type": "callout",
+      "style": "tip",
+      "text": "The best way to learn Flask is by building projects. Start small - a personal blog, todo app, or portfolio site - and gradually add features as you learn."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Resources That Helped Me"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Official Flask documentation - comprehensive and well-written",
+        "Miguel Grinberg's Flask Mega-Tutorial - excellent step-by-step guide",
+        "Flask by Example series - real-world project tutorials",
+        "Corey Schafer's Flask YouTube series - clear video explanations"
       ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Flask has proven to be an excellent choice for web development. Its simplicity doesn't compromise power, and the skills I'm building with Flask directly translate to understanding other web frameworks. Whether you're building your first web app or adding Python to your tech stack, Flask is a fantastic place to start."
     }
   ]
 }
