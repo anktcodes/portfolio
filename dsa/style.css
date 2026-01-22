@@ -1,0 +1,455 @@
+/* ==========================================
+   GLOBAL STYLES
+   ========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Color Palette */
+    --primary-color: #490b8b;
+    --secondary-color: #54007b;
+    --background-dark: #0f031c;
+    --background-light: #1a0533;
+    --text-primary: #ffffff;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+    --border-color: rgba(73, 11, 139, 0.3);
+    --accent-color: #c084fc;
+    
+    /* Spacing */
+    --sidebar-width: 280px;
+    --header-height: 80px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(to bottom, var(--background-dark), var(--background-light));
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ==========================================
+   SIDEBAR NAVIGATION (DESKTOP)
+   ========================================== */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    background: var(--background-dark);
+    border-right: 1px solid var(--border-color);
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.sidebar-header {
+    padding: 2rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-header h2 {
+    font-size: 1.5rem;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 1rem 0;
+}
+
+.nav-list li {
+    margin: 0;
+}
+
+.nav-list a {
+    display: block;
+    padding: 0.875rem 1.5rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.nav-list a:hover {
+    color: var(--text-primary);
+    background: rgba(73, 11, 139, 0.1);
+    border-left-color: var(--primary-color);
+}
+
+.nav-list a.active {
+    color: var(--text-primary);
+    background: rgba(73, 11, 139, 0.2);
+    border-left-color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* ==========================================
+   MAIN CONTENT AREA
+   ========================================== */
+
+.main-content {
+    margin-left: var(--sidebar-width);
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.content-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.content-header h1 {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+}
+
+.content-section {
+    max-width: 900px;
+}
+
+/* ==========================================
+   ROADMAP VIEW
+   ========================================== */
+
+.roadmap-intro {
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    background: rgba(73, 11, 139, 0.1);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 0.5rem;
+}
+
+.roadmap-intro p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+}
+
+.roadmap-container {
+    position: relative;
+    padding: 2rem 0;
+}
+
+/* Vertical connecting line */
+.roadmap-container::before {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+}
+
+.roadmap-item {
+    position: relative;
+    padding-left: 80px;
+    margin-bottom: 3rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.roadmap-item:hover {
+    transform: translateX(5px);
+}
+
+
+/* Circle node on the line */
+.roadmap-item::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border: 3px solid var(--background-dark);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(73, 11, 139, 0.5);
+    z-index: 2;
+}
+
+.roadmap-item-content {
+    background: var(--background-light);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.roadmap-item:hover .roadmap-item-content {
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 40px rgba(73, 11, 139, 0.3);
+}
+
+.roadmap-item-number {
+    display: inline-block;
+    font-size: 0.875rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.roadmap-item-title {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.roadmap-item-description {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* End pointer (pulsing animation) */
+.roadmap-end {
+    position: relative;
+    padding-left: 80px;
+    margin-top: 2rem;
+}
+
+.roadmap-pointer {
+    position: absolute;
+    left: 22px;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.roadmap-pointer::before,
+.roadmap-pointer::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    animation: ripple 2s ease-out infinite;
+}
+
+.roadmap-pointer::after {
+    animation-delay: 0.5s;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+@keyframes ripple {
+    0% {
+        width: 16px;
+        height: 16px;
+        opacity: 1;
+    }
+    100% {
+        width: 60px;
+        height: 60px;
+        opacity: 0;
+    }
+}
+
+.roadmap-end-text {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* ==========================================
+   TOPIC DOCUMENTATION VIEW
+   ========================================== */
+
+.topic-content {
+    padding: 2rem;
+    background: var(--background-light);
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.topic-content h2 {
+    color: var(--primary-color);
+    margin: 2rem 0 1rem;
+    font-size: 1.75rem;
+}
+
+.topic-content h3 {
+    color: var(--text-primary);
+    margin: 1.5rem 0 0.75rem;
+    font-size: 1.25rem;
+}
+
+.topic-content p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.topic-content ul {
+    margin: 1rem 0 1rem 2rem;
+    color: var(--text-secondary);
+}
+
+.topic-content li {
+    margin-bottom: 0.5rem;
+}
+
+.topic-content code {
+    background: var(--background-dark);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-family: 'Courier New', monospace;
+    color: var(--accent-color);
+}
+
+.topic-content pre {
+    background: var(--background-dark);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border-color);
+}
+
+.topic-content pre code {
+    background: none;
+    padding: 0;
+    color: var(--text-secondary);
+}
+
+/* ==========================================
+   MOBILE NAVIGATION (HIDDEN ON DESKTOP)
+   ========================================== */
+
+.mobile-nav {
+    display: none;
+    margin-top: 4rem;
+    padding: 2rem;
+    background: var(--background-light);
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.mobile-nav h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.mobile-nav-list {
+    list-style: none;
+}
+
+.mobile-nav-list li {
+    margin-bottom: 0.5rem;
+}
+
+.mobile-nav-list a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    background: var(--background-dark);
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.mobile-nav-list a:hover,
+.mobile-nav-list a.active {
+    color: var(--text-primary);
+    border-color: var(--primary-color);
+    background: rgba(73, 11, 139, 0.2);
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN (MOBILE)
+   ========================================== */
+
+@media (max-width: 768px) {
+    /* Hide desktop sidebar */
+    .sidebar {
+        display: none;
+    }
+
+    /* Remove left margin from main content */
+    .main-content {
+        margin-left: 0;
+        padding: 1.5rem;
+    }
+
+    /* Show mobile navigation after content */
+    .mobile-nav {
+        display: block;
+    }
+
+    /* Adjust header */
+    .content-header h1 {
+        font-size: 2rem;
+    }
+
+    /* Adjust roadmap for mobile */
+    .roadmap-container::before {
+        left: 20px;
+    }
+
+    .roadmap-item {
+        padding-left: 60px;
+    }
+
+    .roadmap-item::before {
+        left: 10px;
+        width: 16px;
+        height: 16px;
+    }
+
+    .roadmap-item-title {
+        font-size: 1.25rem;
+    }
+
+    .roadmap-end {
+        padding-left: 60px;
+    }
+
+    .roadmap-pointer {
+        left: 12px;
+    }
+}
+
+/* ==========================================
+   SCROLLBAR STYLING
+   ========================================== */
+
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: var(--background-dark);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
