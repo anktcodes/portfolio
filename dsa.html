@@ -31,17 +31,117 @@
 
     <!-- Pattern Sections -->
     <div class="pattern-section">
-      <!-- Two Pointer Pattern -->
+      <!-- Arrays & Hashing Pattern -->
       <article class="pattern-card">
         <h2 class="pattern-title">
           <span class="pattern-number">1</span>
+          Arrays & Hashing
+        </h2>
+
+        <div class="pattern-intro">
+          Arrays and Hash Tables are fundamental data structures. Hash tables allow us to achieve O(1) average-case lookups, making them perfect for problems requiring fast access, counting frequencies, or detecting duplicates. Understanding when to use arrays versus hash tables is crucial for writing efficient code.
+        </div>
+
+        <h3 class="section-heading">Problem</h3>
+        <div class="problem-statement">
+          <strong>LeetCode 1 - Two Sum</strong>
+          <p style="margin-top: 0.75rem; color: #d1d5db">
+            Given an array of integers and a target value, find two numbers that add up to the target. Return their indices.
+          </p>
+        </div>
+
+        <h3 class="section-heading">Naive Approach</h3>
+        <div class="approach-box">
+          <p class="approach-title">❌ Brute Force - Why it fails</p>
+          <p style="color: #d1d5db; margin-bottom: 1rem">
+            Check every pair of numbers using nested loops. For each number, scan the rest of the array to find its complement. This approach works but becomes extremely slow with larger arrays.
+          </p>
+          <div class="complexity">
+            <div class="complexity-item">
+              <span class="complexity-label">Time Complexity:</span>
+              <span style="color: #f87171">O(n²)</span>
+            </div>
+            <div class="complexity-item">
+              <span class="complexity-label">Space Complexity:</span>
+              <span>O(1)</span>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="section-heading">Optimized Approach</h3>
+        <div class="approach-box">
+          <p class="approach-title">✅ Hash Map - Why it works</p>
+          <p style="color: #d1d5db; margin-bottom: 1rem">
+            Use a hash map to store numbers we've seen along with their indices. For each number, check if its complement (target - current number) exists in the hash map. If found, we have our answer. If not, store the current number and continue.
+          </p>
+          <div class="key-insight">
+            Hash tables trade space for speed - we use O(n) extra memory to achieve O(1) lookups.
+          </div>
+          <div class="complexity">
+            <div class="complexity-item">
+              <span class="complexity-label">Time Complexity:</span>
+              <span style="color: #34d399">O(n)</span>
+            </div>
+            <div class="complexity-item">
+              <span class="complexity-label">Space Complexity:</span>
+              <span style="color: #fbbf24">O(n)</span>
+            </div>
+          </div>
+          <p style="color: #9ca3af; margin-top: 1rem; font-size: 0.95rem">
+            We scan the array once, and each hash table operation takes O(1) time.
+          </p>
+        </div>
+
+        <h3 class="section-heading">Solution Code</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">Python</span>
+          </div>
+          <pre><span class="code-keyword">class</span> <span class="code-function">Solution</span>:
+    <span class="code-keyword">def</span> <span class="code-function">twoSum</span>(self, nums, target):
+        seen = {}  <span class="code-comment"># Hash map to store value: index</span>
+        
+        <span class="code-keyword">for</span> i, num <span class="code-keyword">in</span> <span class="code-function">enumerate</span>(nums):
+            complement = target - num
+            
+            <span class="code-keyword">if</span> complement <span class="code-keyword">in</span> seen:
+                <span class="code-keyword">return</span> [seen[complement], i]
+            
+            seen[num] = i  <span class="code-comment"># Store current number and index</span>
+        
+        <span class="code-keyword">return</span> []  <span class="code-comment"># No solution found</span></pre>
+        </div>
+        <p style="color: #9ca3af; font-size: 0.95rem; margin-top: 1rem">
+          This solution demonstrates the power of hash tables - we turn a quadratic problem into a linear one.
+        </p>
+
+        <h3 class="section-heading">Visual Intuition</h3>
+        <div
+          style="
+            background: rgba(73, 11, 139, 0.1);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            margin-top: 1rem;
+          "
+        >
+          <p style="color: #d1d5db">
+            <strong>Hash Map as Memory</strong>: Think of it as remembering every number we've seen<br />
+            <strong>Complement Check</strong>: For each new number, ask "Have I seen its complement before?"
+          </p>
+        </div>
+      </article>
+
+      <!-- Two Pointer Pattern -->
+      <article class="pattern-card">
+        <h2 class="pattern-title">
+          <span class="pattern-number">2</span>
           Two Pointer Technique
         </h2>
 
         <div class="pattern-intro">
           The Two Pointer technique is used when we need to process a sequence
           (array/string) from both ends or maintain a dynamic window. Instead of
-          nested loops, we move pointers intelligently to reduce time
+          nested loops, we move pointers intelligently to reduce overall time
           complexity.
         </div>
 
@@ -142,11 +242,113 @@
         </div>
       </article>
 
+      <!-- Stacks Pattern -->
+      <article class="pattern-card">
+        <h2 class="pattern-title">
+          <span class="pattern-number">3</span>
+          Stack (LIFO)
+        </h2>
+
+        <div class="pattern-intro">
+          Stacks follow the Last-In-First-Out (LIFO) principle. They're essential for problems involving nested structures, backtracking, or any scenario where you need to reverse or undo operations. Common applications include matching parentheses, expression evaluation, and depth-first traversals.
+        </div>
+
+        <h3 class="section-heading">Problem</h3>
+        <div class="problem-statement">
+          <strong>LeetCode 20 - Valid Parentheses</strong>
+          <p style="margin-top: 0.75rem; color: #d1d5db">
+            Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. An input string is valid if brackets are closed in the correct order.
+          </p>
+        </div>
+
+        <h3 class="section-heading">Naive Approach</h3>
+        <div class="approach-box">
+          <p class="approach-title">❌ Multiple Passes - Why it fails</p>
+          <p style="color: #d1d5db; margin-bottom: 1rem">
+            Repeatedly scan the string to find and remove matching pairs like "()", "[]", "{}". Continue until no more pairs can be removed, then check if string is empty. This requires multiple passes and string manipulation.
+          </p>
+          <div class="complexity">
+            <div class="complexity-item">
+              <span class="complexity-label">Time Complexity:</span>
+              <span style="color: #f87171">O(n²)</span>
+            </div>
+            <div class="complexity-item">
+              <span class="complexity-label">Space Complexity:</span>
+              <span style="color: #fbbf24">O(n)</span>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="section-heading">Optimized Approach</h3>
+        <div class="approach-box">
+          <p class="approach-title">✅ Stack - Why it works</p>
+          <p style="color: #d1d5db; margin-bottom: 1rem">
+            Use a stack to keep track of opening brackets. When we encounter an opening bracket, push it onto the stack. When we see a closing bracket, check if it matches the top of the stack. If yes, pop the stack. If no, or if stack is empty, the string is invalid. At the end, the stack should be empty.
+          </p>
+          <div class="key-insight">
+            Stacks naturally handle nested structures because the last opened bracket must be the first one closed.
+          </div>
+          <div class="complexity">
+            <div class="complexity-item">
+              <span class="complexity-label">Time Complexity:</span>
+              <span style="color: #34d399">O(n)</span>
+            </div>
+            <div class="complexity-item">
+              <span class="complexity-label">Space Complexity:</span>
+              <span style="color: #fbbf24">O(n)</span>
+            </div>
+          </div>
+          <p style="color: #9ca3af; margin-top: 1rem; font-size: 0.95rem">
+            We scan each character once, and each stack operation is O(1).
+          </p>
+        </div>
+
+        <h3 class="section-heading">Solution Code</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">Python</span>
+          </div>
+          <pre><span class="code-keyword">class</span> <span class="code-function">Solution</span>:
+    <span class="code-keyword">def</span> <span class="code-function">isValid</span>(self, s):
+        stack = []
+        mapping = {<span class="code-string">')'</span>: <span class="code-string">'('</span>, <span class="code-string">'}'</span>: <span class="code-string">'{'</span>, <span class="code-string">']'</span>: <span class="code-string">'['</span>}
+        
+        <span class="code-keyword">for</span> char <span class="code-keyword">in</span> s:
+            <span class="code-keyword">if</span> char <span class="code-keyword">in</span> mapping:  <span class="code-comment"># Closing bracket</span>
+                <span class="code-keyword">if</span> <span class="code-keyword">not</span> stack <span class="code-keyword">or</span> stack[-<span class="code-string">1</span>] != mapping[char]:
+                    <span class="code-keyword">return</span> <span class="code-string">False</span>
+                stack.pop()
+            <span class="code-keyword">else</span>:  <span class="code-comment"># Opening bracket</span>
+                stack.append(char)
+        
+        <span class="code-keyword">return</span> <span class="code-function">len</span>(stack) == <span class="code-string">0</span>  <span class="code-comment"># All brackets matched</span></pre>
+        </div>
+        <p style="color: #9ca3af; font-size: 0.95rem; margin-top: 1rem">
+          This solution elegantly handles nested and interleaved brackets using the LIFO property of stacks.
+        </p>
+
+        <h3 class="section-heading">Visual Intuition</h3>
+        <div
+          style="
+            background: rgba(73, 11, 139, 0.1);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            margin-top: 1rem;
+          "
+        >
+          <p style="color: #d1d5db">
+            <strong>Opening brackets</strong> go on the stack (remember them)<br />
+            <strong>Closing brackets</strong> must match the top of stack (most recent opening)<br />
+            <strong>Empty stack at end</strong> means all brackets were properly matched
+          </p>
+        </div>
+      </article>
+
       <!-- Placeholder for future patterns -->
       <div style="text-align: center; padding: 3rem 1rem; color: #6b7280">
         <p>More patterns coming soon...</p>
         <p style="font-size: 0.9rem; margin-top: 0.5rem">
-          Sliding Window • Fast & Slow Pointers • Merge Intervals
+          Sliding Window • Binary Search • Dynamic Programming
         </p>
       </div>
     </div>
