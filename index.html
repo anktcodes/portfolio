@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,10 +8,13 @@
   </head>
   <body>
     <!-- Navigation -->
-    <nav>
+    <!-- Updated Navigation Section -->
+    <!-- Replace your existing <nav> section with this -->
+
+    <nav class="site-nav">
       <div class="nav-container">
         <div class="logo">
-          <span class="logo-bracket">&lt;</span>anktcodes.com<span
+          <span class="logo-bracket">&lt;</span>ankit.dev<span
             class="logo-bracket"
             >/&gt;</span
           >
@@ -19,36 +22,80 @@
         <div class="nav-links">
           <a href="#" data-page="home" class="active">Home</a>
           <a href="#" data-page="projects">Projects</a>
+          <a href="dsa-roadmap.html">Learn DSA</a>
           <a href="#" data-page="about">About</a>
-          <a href="/blog/blog.html" data-page="blog">Blog</a>
           <a href="#" data-page="contact">Contact</a>
-          <a href="/dsa/">Learn DSA</a>
         </div>
         <button class="menu-btn" id="menuBtn">☰</button>
       </div>
       <div class="mobile-menu" id="mobileMenu">
         <a href="#" data-page="home" class="active">Home</a>
         <a href="#" data-page="projects">Projects</a>
+        <a href="dsa-roadmap.html">Learn DSA</a>
         <a href="#" data-page="about">About</a>
         <a href="#" data-page="contact">Contact</a>
-        <a href="/dsa/index.html">Learn DSA</a>
       </div>
     </nav>
 
     <!-- Home Page -->
     <div id="homePage" class="page">
       <!-- Hero Section -->
+      <!-- Updated Hero Section -->
+      <!-- Replace your existing hero section with this -->
+
       <section class="hero">
         <div>
           <h1>Hi, I'm <span class="gradient-text">Ankit</span></h1>
           <p>Developer • Programmer</p>
           <p>Data Scientist • Analyst</p>
-          <button class="contact-btn" onclick="navigateTo('contact')">
-            Contact Me
-          </button>
+          <div class="hero-buttons">
+            <button class="contact-btn" onclick="navigateTo('contact')">
+              Contact Me
+            </button>
+          </div>
+
+          <div class="hero-card-wrapper">
+            <div class="explore-card dsa-card hero-cta-card">
+              <div class="explore-icon">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <h3 class="explore-title">Start Learning DSA</h3>
+              <p class="explore-description">
+                Follow a structured roadmap and build strong problem-solving
+                fundamentals with the right progression.
+              </p>
+              <div class="explore-tags">
+                <span class="tag">Roadmap</span>
+                <span class="tag">Concepts</span>
+                <span class="tag">Practice</span>
+              </div>
+              <a href="dsa-roadmap.html" class="explore-btn">
+                Open Roadmap
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
-
       <!-- Skills Section -->
       <section class="skills-section">
         <h2 class="section-title">

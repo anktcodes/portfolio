@@ -22,7 +22,7 @@ body {
 }
 
 /* Navigation */
-nav {
+.site-nav {
   position: fixed;
   top: 0;
   width: 100%;
@@ -45,6 +45,10 @@ nav {
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
 }
 
 .logo-bracket {
@@ -177,11 +181,35 @@ nav {
   animation: fadeInUp 0.8s ease-out 0.5s forwards;
 }
 
-.hero .gradient-text {
+.gradient-text {
   background: linear-gradient(to right, #490b8b, #54007b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Hero CTA Card (uses existing .explore-card styling) */
+.hero-card-wrapper {
+  width: 100%;
+  max-width: 880px;
+  margin: 2rem auto 0;
+}
+
+.hero .hero-cta-card {
+  text-align: left; /* override hero's center alignment */
+}
+
+.hero .hero-cta-card .explore-icon {
+  width: 72px;
+  height: 72px;
+}
+
+.hero .hero-cta-card .explore-title {
+  font-size: 1.5rem;
+}
+
+.hero .hero-cta-card .explore-description {
+  font-size: 1rem;
 }
 
 .hero p {

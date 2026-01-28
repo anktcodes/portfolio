@@ -25,6 +25,23 @@
     --header-height: 80px;
 }
 
+:root {
+    /* Color Palette */
+    --primary-color: #490b8b;
+    --secondary-color: #54007b;
+    --background-dark: #0f031c;
+    --background-light: #1a0533;
+    --text-primary: #ffffff;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+    --border-color: rgba(73, 11, 139, 0.3);
+    --accent-color: #c084fc;
+    
+    /* Spacing */
+    --sidebar-width: 280px;
+    --header-height: 80px;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     background: linear-gradient(to bottom, var(--background-dark), var(--background-light));
@@ -40,9 +57,9 @@ body {
 .sidebar {
     position: fixed;
     left: 0;
-    top: 0;
+    top: 64px;
     width: var(--sidebar-width);
-    height: 100vh;
+    height: calc(100vh - 64px);
     background: var(--background-dark);
     border-right: 1px solid var(--border-color);
     overflow-y: auto;
@@ -100,7 +117,7 @@ body {
 .main-content {
     margin-left: var(--sidebar-width);
     min-height: 100vh;
-    padding: 2rem;
+    padding: calc(64px + 2rem) 2rem 2rem;
 }
 
 .content-header {
@@ -156,11 +173,6 @@ body {
     padding-left: 80px;
     margin-bottom: 3rem;
     cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.roadmap-item:hover {
-    transform: translateX(5px);
 }
 
 
@@ -190,6 +202,7 @@ body {
 .roadmap-item:hover .roadmap-item-content {
     border-color: var(--primary-color);
     box-shadow: 0 10px 40px rgba(73, 11, 139, 0.3);
+    transform: translateX(5px);
 }
 
 .roadmap-item-number {
@@ -392,7 +405,7 @@ body {
     /* Remove left margin from main content */
     .main-content {
         margin-left: 0;
-        padding: 1.5rem;
+        padding: calc(64px + 1.5rem) 1.5rem 1.5rem;
     }
 
     /* Show mobile navigation after content */
@@ -452,4 +465,103 @@ body {
 
 .sidebar::-webkit-scrollbar-thumb:hover {
     background: var(--secondary-color);
+}
+
+
+/* Hero Buttons Container */
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+/* Contact Button - Update existing or add */
+.contact-btn {
+  background: linear-gradient(to right, #490b8b, #54007b);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 9999px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  animation: fadeInScale 0.8s ease-out 1.3s forwards;
+}
+
+.contact-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(73, 11, 139, 0.5);
+}
+
+/* NEW: DSA Learning Button */
+.dsa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: white;
+  padding: 1rem 2rem;
+  border: 2px solid #490b8b;
+  border-radius: 9999px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  animation: fadeInScale 0.8s ease-out 1.5s forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+.dsa-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(to right, #490b8b, #54007b);
+  transition: width 0.4s ease;
+  z-index: -1;
+}
+
+.dsa-btn:hover::before {
+  width: 100%;
+}
+
+.dsa-btn:hover {
+  transform: scale(1.05);
+  border-color: #54007b;
+  box-shadow: 0 0 30px rgba(73, 11, 139, 0.5);
+}
+
+.dsa-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.dsa-btn:hover svg {
+  transform: rotate(360deg);
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .contact-btn,
+  .dsa-btn {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
 }

@@ -119,11 +119,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 10);
   }
 
-  // Add click events to all navigation links
+  // Add click events to SPA navigation links (data-page only).
+  // Normal links like "Learn DSA" (href to another HTML file) should work normally.
   document.querySelectorAll(".nav-links a, .mobile-menu a").forEach((link) => {
     link.addEventListener("click", (e) => {
+      const pageName = link.dataset.page;
+      if (!pageName) return; // allow normal navigation
       e.preventDefault();
-      navigateTo(link.dataset.page);
+      navigateTo(pageName);
     });
   });
 

@@ -4,9 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DSA Learning Roadmap - Ankit</title>
-    <link rel="stylesheet" href="learn-dsa.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/learn-dsa.css">
+    <!-- Optional: add `css/dsa.css` if you want the DSA pattern page styles too -->
 </head>
 <body>
+    <!-- Top Navbar -->
+    <nav class="site-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>ankit.dev<span class="logo-bracket">/&gt;</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="dsa.html">DSA Patterns</a>
+                <a href="dsa-roadmap.html" class="active">Roadmap</a>
+                <a href="blog/blog.html">Blog</a>
+            </div>
+            <button class="menu-btn" id="menuBtn">☰</button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="dsa.html">DSA Patterns</a>
+            <a href="dsa-roadmap.html" class="active">Roadmap</a>
+            <a href="blog/blog.html">Blog</a>
+        </div>
+    </nav>
     <!-- Left Sidebar Navigation (Desktop Only) -->
     <nav class="sidebar" id="sidebar">
         <div class="sidebar-header">
@@ -55,6 +78,7 @@
         </nav>
     </main>
 
-    <script src="learn-dsa.js"></script>
+    <script src="script/learn-dsa.js"></script>
+    <script src="script/nav.js"></script>
 </body>
 </html>
