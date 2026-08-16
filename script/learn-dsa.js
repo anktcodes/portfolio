@@ -14,7 +14,7 @@ const dsaTopics = [
         description: 'Foundation of data structures - learn indexing, traversal, and basic operations',
         content: `
             <h2>Arrays</h2>
-            <p>Arrays are the most fundamental data structure. They store elements in contiguous memory locations.</p>
+            <p>Arrays are the most fundamental and easy data structure. They store elements in contiguous memory locations.</p>
             
             <h3>Key Concepts</h3>
             <ul>

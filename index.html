@@ -1,580 +1,1103 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ankit - Developer Portfolio</title>
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <!-- Navigation -->
-    <!-- Updated Navigation Section -->
-    <!-- Replace your existing <nav> section with this -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>anktcodes - Full Stack Developer & DSA Learner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <nav class="site-nav">
-      <div class="nav-container">
-        <div class="logo">
-          <span class="logo-bracket">&lt;</span>ankit.dev<span
-            class="logo-bracket"
-            >/&gt;</span
-          >
-        </div>
-        <div class="nav-links">
-          <a href="#" data-page="home" class="active">Home</a>
-          <a href="#" data-page="projects">Projects</a>
-          <a href="dsa-roadmap.html">Learn DSA</a>
-          <a href="#" data-page="about">About</a>
-          <a href="#" data-page="contact">Contact</a>
-        </div>
-        <button class="menu-btn" id="menuBtn">☰</button>
-      </div>
-      <div class="mobile-menu" id="mobileMenu">
-        <a href="#" data-page="home" class="active">Home</a>
-        <a href="#" data-page="projects">Projects</a>
-        <a href="dsa-roadmap.html">Learn DSA</a>
-        <a href="#" data-page="about">About</a>
-        <a href="#" data-page="contact">Contact</a>
-      </div>
+        :root {
+            --bg-light: #ffffff;
+            --bg-dark-mode: #000000;
+            --text-light: #000000;
+            --text-dark-mode: #ffffff;
+            --border-light: #e5e5e5;
+            --border-dark-mode: #333333;
+            --hover-light: #f5f5f5;
+            --hover-dark-mode: #1a1a1a;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.light-mode {
+            background-color: var(--bg-light);
+            color: var(--text-light);
+        }
+
+        body.dark-mode {
+            background-color: var(--bg-dark-mode);
+            color: var(--text-dark-mode);
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid;
+            transition: border-color 0.3s ease;
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .light-mode nav {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-color: var(--border-light);
+        }
+
+        .dark-mode nav {
+            background-color: rgba(0, 0, 0, 0.9);
+            border-color: var(--border-dark-mode);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            color: inherit;
+        }
+
+        .light-mode .theme-toggle {
+            border-color: var(--border-light);
+        }
+
+        .dark-mode .theme-toggle {
+            border-color: var(--border-dark-mode);
+        }
+
+        .theme-toggle:hover {
+            opacity: 0.7;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Home Page */
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Hero/About Section */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .learning-badge {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 20px;
+            margin: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .light-mode .learning-badge {
+            background-color: var(--hover-light);
+            border: 1px solid var(--border-light);
+        }
+
+        .dark-mode .learning-badge {
+            background-color: var(--hover-dark-mode);
+            border: 1px solid var(--border-dark-mode);
+        }
+
+        /* Technologies Section */
+        .tech-section {
+            padding: 3rem 0;
+            border-top: 1px solid;
+            border-bottom: 1px solid;
+            margin: 3rem 0;
+        }
+
+        .light-mode .tech-section {
+            border-color: var(--border-light);
+        }
+
+        .dark-mode .tech-section {
+            border-color: var(--border-dark-mode);
+        }
+
+        .tech-section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .tech-item {
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid;
+            transition: all 0.3s ease;
+        }
+
+        .light-mode .tech-item {
+            background-color: var(--hover-light);
+            border-color: var(--border-light);
+        }
+
+        .dark-mode .tech-item {
+            background-color: var(--hover-dark-mode);
+            border-color: var(--border-dark-mode);
+        }
+
+        .tech-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .tech-item strong {
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 3rem 0;
+        }
+
+        .projects-section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            border-radius: 8px;
+            border: 1px solid;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .light-mode .project-card {
+            background-color: var(--bg-light);
+            border-color: var(--border-light);
+        }
+
+        .dark-mode .project-card {
+            background-color: var(--hover-dark-mode);
+            border-color: var(--border-dark-mode);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            border-bottom: 1px solid;
+        }
+
+        .light-mode .project-image {
+            background-color: var(--hover-light);
+            border-color: var(--border-light);
+        }
+
+        .dark-mode .project-image {
+            background-color: #1a1a1a;
+            border-color: var(--border-dark-mode);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 1px solid;
+            border-radius: 6px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: transparent;
+            color: inherit;
+        }
+
+        .light-mode .btn-primary {
+            border-color: var(--text-light);
+        }
+
+        .dark-mode .btn-primary {
+            border-color: var(--text-dark-mode);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.7;
+        }
+
+        /* Resume Section */
+        .resume-section {
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .resume-section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .resume-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .resume-placeholder {
+            padding: 2rem;
+            border: 2px dashed;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+            opacity: 0.6;
+        }
+
+        .light-mode .resume-placeholder {
+            border-color: var(--border-light);
+        }
+
+        .dark-mode .resume-placeholder {
+            border-color: var(--border-dark-mode);
+        }
+
+        .resume-display {
+            width: 100%;
+            height: 600px;
+            border: 1px solid;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .light-mode .resume-display {
+            border-color: var(--border-light);
+        }
+
+        .dark-mode .resume-display {
+            border-color: var(--border-dark-mode);
+        }
+
+        .btn-download {
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border: 1px solid;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .light-mode .btn-download {
+            background-color: var(--text-light);
+            color: var(--bg-light);
+            border-color: var(--text-light);
+        }
+
+        .dark-mode .btn-download {
+            background-color: var(--text-dark-mode);
+            color: var(--bg-dark-mode);
+            border-color: var(--text-dark-mode);
+        }
+
+        .btn-download:hover {
+            opacity: 0.8;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 3rem 0;
+            border-top: 1px solid;
+            margin-top: 3rem;
+        }
+
+        .light-mode .contact-section {
+            border-color: var(--border-light);
+        }
+
+        .dark-mode .contact-section {
+            border-color: var(--border-dark-mode);
+        }
+
+        .contact-section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item label {
+            display: block;
+            opacity: 0.6;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .contact-item a {
+            color: inherit;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            opacity: 0.7;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid;
+            border-radius: 50%;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .light-mode .social-link {
+            border-color: var(--border-light);
+        }
+
+        .dark-mode .social-link {
+            border-color: var(--border-dark-mode);
+        }
+
+        .social-link:hover {
+            transform: translateY(-4px);
+            opacity: 0.7;
+        }
+
+        /* Projects Page */
+        .projects-page-container {
+            padding: 2rem 0;
+        }
+
+        .projects-page-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .project-detail {
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            border-radius: 8px;
+            border: 1px solid;
+            overflow: hidden;
+        }
+
+        .light-mode .project-detail {
+            background-color: var(--bg-light);
+            border-color: var(--border-light);
+        }
+
+        .dark-mode .project-detail {
+            background-color: var(--hover-dark-mode);
+            border-color: var(--border-dark-mode);
+        }
+
+        .project-detail-content {
+            padding: 2rem;
+        }
+
+        .project-detail h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-detail p {
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-placeholder {
+            aspect-ratio: 1;
+            border: 1px dashed;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .light-mode .gallery-placeholder {
+            background-color: var(--hover-light);
+            border-color: var(--border-light);
+        }
+
+        .dark-mode .gallery-placeholder {
+            background-color: #1a1a1a;
+            border-color: var(--border-dark-mode);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            text-decoration: none;
+            color: inherit;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        /* Carousel Modal */
+        .carousel-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .carousel-modal.active {
+            display: flex;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-image {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+            display: block;
+            object-fit: contain;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.3);
+            color: white;
+            border: none;
+            font-size: 2.5rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-arrow:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-arrow-left {
+            left: 10px;
+        }
+
+        .carousel-arrow-right {
+            right: 10px;
+        }
+
+        .carousel-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            z-index: 1002;
+        }
+
+        .carousel-close:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .carousel-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .carousel-modal {
+                padding: 1rem;
+            }
+
+            .carousel-arrow {
+                font-size: 1.8rem;
+                width: 40px;
+                height: 40px;
+                padding: 0;
+            }
+
+            .carousel-arrow-left {
+                left: 5px;
+            }
+
+            .carousel-arrow-right {
+                right: 5px;
+            }
+
+            .carousel-close {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+
+            .carousel-counter {
+                font-size: 0.85rem;
+                bottom: 10px;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <nav>
+        <a href="#" class="logo" onclick="showHome()">@anktcodes</a>
+        <ul class="nav-links">
+            <li><a href="#" onclick="showHome()">Home</a></li>
+            <li><a href="#" onclick="showProjects()">Projects</a></li>
+            <li><a href="#" onclick="showResume()">Resume</a></li>
+        </ul>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
     </nav>
 
     <!-- Home Page -->
-    <div id="homePage" class="page">
-      <!-- Hero Section -->
-      <!-- Updated Hero Section -->
-      <!-- Replace your existing hero section with this -->
+    <div id="home-page" class="page active">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <h1>Ankit</h1>
+                <p>Full Stack Developer & DSA Enthusiast</p>
+                <div>
+                    <div class="learning-badge">📚 Learning Full Stack Development</div>
+                    <div class="learning-badge">🎯 Mastering Data Structures & Algorithms</div>
+                </div>
+            </section>
 
-      <section class="hero">
-        <div>
-          <h1>Hi, I'm <span class="gradient-text">Ankit</span></h1>
-          <p>Developer • Programmer</p>
-          <p>Data Scientist • Analyst</p>
-          <div class="hero-buttons">
-            <button class="contact-btn" onclick="navigateTo('contact')">
-              Contact Me
-            </button>
-          </div>
+            <!-- Technologies Section -->
+            <section class="tech-section">
+                <h2>Technologies & Skills</h2>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <div>💻</div>
+                        <strong>Frontend</strong>
+                        <small>React, HTML, CSS, JavaScript</small>
+                    </div>
+                    <div class="tech-item">
+                        <div>⚙️</div>
+                        <strong>Backend</strong>
+                        <small>FastAPI, Python, Node.js</small>
+                    </div>
+                    <div class="tech-item">
+                        <div>🗄️</div>
+                        <strong>Database</strong>
+                        <small>PostgreSQL, MongoDB</small>
+                    </div>
+                    <div class="tech-item">
+                        <div>🔧</div>
+                        <strong>Tools</strong>
+                        <small>Git, Docker, Linux</small>
+                    </div>
+                    <div class="tech-item">
+                        <div>📱</div>
+                        <strong>Mobile</strong>
+                        <small>Android Development</small>
+                    </div>
+                    <div class="tech-item">
+                        <div>🧠</div>
+                        <strong>DSA</strong>
+                        <small>Algorithms, Data Structures</small>
+                    </div>
+                </div>
+            </section>
 
-          <div class="hero-card-wrapper">
-            <div class="explore-card dsa-card hero-cta-card">
-              <div class="explore-icon">
-                <svg
-                  width="48"
-                  height="48"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <polyline points="16 18 22 12 16 6"></polyline>
-                  <polyline points="8 6 2 12 8 18"></polyline>
-                </svg>
-              </div>
-              <h3 class="explore-title">Start Learning DSA</h3>
-              <p class="explore-description">
-                Follow a structured roadmap and build strong problem-solving
-                fundamentals with the right progression.
-              </p>
-              <div class="explore-tags">
-                <span class="tag">Roadmap</span>
-                <span class="tag">Concepts</span>
-                <span class="tag">Practice</span>
-              </div>
-              <a href="dsa-roadmap.html" class="explore-btn">
-                Open Roadmap
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
-            </div>
-          </div>
+            <!-- Projects Section -->
+            <section class="projects-section">
+                <h2>Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">📊</div>
+                        <div class="project-content">
+                            <h3>SSDAS</h3>
+                            <p>Smart Sales Data Analysis System - A comprehensive platform for analyzing and visualizing sales data with advanced analytics capabilities.</p>
+                            <div class="project-buttons">
+                                <a href="#" class="btn btn-primary" onclick="showProjectDetail(0)">See Full Project</a>
+                                <a href="#" class="btn btn-primary" onclick="openCarousel(0)">Preview</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">▶️</div>
+                        <div class="project-content">
+                            <h3>Youtube Clone</h3>
+                            <p>A full-featured YouTube clone allowing users to sign in, watch videos, and upload their own content with a seamless user experience.</p>
+                            <div class="project-buttons">
+                                <a href="#" class="btn btn-primary" onclick="showProjectDetail(1)">See Full Project</a>
+                                <a href="#" class="btn btn-primary" onclick="openCarousel(1)">Preview</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resume Section -->
+            <section class="resume-section">
+                <h2>Resume</h2>
+                <div class="resume-container">
+                    <embed src="resume.pdf" type="application/pdf" class="resume-display">
+                    <a href="resume.pdf" class="btn-download" download="Ankit_Resume.pdf">⬇️ Download Resume</a>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="contact-section">
+                <h2>Get In Touch</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <label>Email</label>
+                        <a href="mailto:ap349500@gmail.com">ap349500@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <label>Phone</label>
+                        <a href="tel:+919289479880">+91 9289479880</a>
+                    </div>
+                </div>
+
+                <h3 style="text-align: center; margin-bottom: 2rem;">Follow Me</h3>
+                <div class="socials">
+                    <a href="https://github.com/anktcodes" target="_blank" class="social-link" title="GitHub">GH</a>
+                    <a href="https://leetcode.com/anktcodes" target="_blank" class="social-link" title="LeetCode">LC</a>
+                    <a href="https://twitter.com/anktcodes" target="_blank" class="social-link" title="X/Twitter">X</a>
+                    <a href="https://linkedin.com/in/anktcodes" target="_blank" class="social-link" title="LinkedIn">LI</a>
+                </div>
+            </section>
         </div>
-      </section>
-      <!-- Skills Section -->
-      <section class="skills-section">
-        <h2 class="section-title">
-          Skills & <span class="gradient-text">Expertise</span>
-        </h2>
-
-        <div class="skills-wrapper">
-          <div class="skills-categorized-grid">
-            <div class="skill-category-card">
-              <div class="card-header">
-                <span class="icon">🚀</span>
-                <h3>Currently Using</h3>
-              </div>
-              <div class="skill-tags">
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">SQL</span>
-                <span class="skill-tag">Excel</span>
-                <span class="skill-tag">Power BI</span>
-                <span class="skill-tag">HTML</span>
-                <span class="skill-tag">CSS</span>
-                <span class="skill-tag">JavaScript</span>
-              </div>
-            </div>
-
-            <div class="skill-category-card">
-              <div class="card-header">
-                <span class="icon">🛠️</span>
-                <h3>Comfortable With</h3>
-              </div>
-              <div class="skill-tags">
-                <span class="skill-tag">Pandas</span>
-                <span class="skill-tag">NumPy</span>
-                <span class="skill-tag">MongoDB</span>
-                <span class="skill-tag">Node.js</span>
-                <span class="skill-tag">Git</span>
-              </div>
-            </div>
-
-            <div class="skill-category-card">
-              <div class="card-header">
-                <span class="icon">🌱</span>
-                <h3>Learning & Exploring</h3>
-              </div>
-              <div class="skill-tags">
-                <span class="skill-tag">Machine Learning</span>
-                <span class="skill-tag">Statistics</span>
-                <span class="skill-tag">Data Science</span>
-                <span class="skill-tag">AI</span>
-              </div>
-            </div>
-
-            <div class="skill-category-card highlight-card">
-              <div class="card-header">
-                <span class="icon">⚡</span>
-                <h3>My Strengths</h3>
-              </div>
-              <div class="skill-tags">
-                <span class="skill-tag strength">Problem Solving</span>
-                <span class="skill-tag strength">Logical Thinking</span>
-                <span class="skill-tag strength">Continuous Learning</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Explore Projects Section -->
-      <!-- Add this after the About Section on your home page -->
-
-      <section class="explore-section">
-        <h2 class="section-title">
-          Explore <span class="gradient-text">Projects</span>
-        </h2>
-        <div class="explore-container">
-          <div class="explore-card dsa-card">
-            <div class="explore-icon">
-              <svg
-                width="48"
-                height="48"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <polyline points="16 18 22 12 16 6"></polyline>
-                <polyline points="8 6 2 12 8 18"></polyline>
-              </svg>
-            </div>
-            <h3 class="explore-title">DSA & Algorithms</h3>
-            <p class="explore-description">
-              Deep dive into Data Structures & Algorithms patterns with detailed
-              explanations and optimized solutions
-            </p>
-            <div class="explore-tags">
-              <span class="tag">Two Pointer</span>
-              <span class="tag">Sliding Window</span>
-              <span class="tag">Dynamic Programming</span>
-            </div>
-            <a href="dsa.html" class="explore-btn">
-              View Patterns
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
-
-          <div class="explore-card data-card">
-            <div class="explore-icon">
-              <svg
-                width="48"
-                height="48"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <line x1="12" y1="20" x2="12" y2="10"></line>
-                <line x1="18" y1="20" x2="18" y2="4"></line>
-                <line x1="6" y1="20" x2="6" y2="16"></line>
-              </svg>
-            </div>
-            <h3 class="explore-title">Data Analysis Projects</h3>
-            <p class="explore-description">
-              Real-world data analysis projects showcasing insights,
-              visualizations, and business intelligence
-            </p>
-            <div class="explore-tags">
-              <span class="tag">Python</span>
-              <span class="tag">SQL</span>
-              <span class="tag">Power BI</span>
-            </div>
-            <a href="#" class="explore-btn">
-              View Projects
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Projects Carousel Section -->
-      <section id="featured-projects" class="projects-section">
-        <h2 class="section-title">
-          Featured <span class="gradient-text">Projects</span>
-        </h2>
-        <div class="carousel-container">
-          <!-- Mobile Carousel -->
-          <div class="projects-carousel scrollbar-hide" id="projectsCarousel">
-            <div class="project-card center" data-index="0">
-              <img
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop"
-                alt="Data Analytics Dashboard"
-              />
-              <div class="project-card-content">
-                <h3>Data Analytics Dashboard</h3>
-                <p>
-                  Interactive dashboard built with Python and Power BI for
-                  real-time data visualization
-                </p>
-                <a href="#" class="read-more">Read More →</a>
-              </div>
-            </div>
-            <div class="project-card" data-index="1">
-              <img
-                src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=400&fit=crop"
-                alt="ML Prediction Model"
-              />
-              <div class="project-card-content">
-                <h3>ML Prediction Model</h3>
-                <p>
-                  Machine learning model for predictive analytics using advanced
-                  algorithms
-                </p>
-                <a href="#" class="read-more">Read More →</a>
-              </div>
-            </div>
-            <div class="project-card" data-index="2">
-              <img
-                src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&h=400&fit=crop"
-                alt="SQL Database Optimizer"
-              />
-              <div class="project-card-content">
-                <h3>SQL Database Optimizer</h3>
-                <p>
-                  Advanced SQL optimization tool for improving database query
-                  performance
-                </p>
-                <a href="#" class="read-more">Read More →</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Carousel Indicators -->
-          <div class="carousel-indicators" id="carouselIndicators">
-            <button class="indicator active" data-slide="0"></button>
-            <button class="indicator" data-slide="1"></button>
-            <button class="indicator" data-slide="2"></button>
-          </div>
-
-          <!-- Desktop Grid -->
-          <div class="projects-grid">
-            <div class="project-card">
-              <img
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop"
-                alt="Data Analytics Dashboard"
-              />
-              <div class="project-card-content">
-                <h3>Data Analytics Dashboard</h3>
-                <p>
-                  Interactive dashboard built with Python and Power BI for
-                  real-time data visualization
-                </p>
-                <a href="#" class="read-more">Read More →</a>
-              </div>
-            </div>
-            <div class="project-card">
-              <img
-                src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=400&fit=crop"
-                alt="ML Prediction Model"
-              />
-              <div class="project-card-content">
-                <h3>ML Prediction Model</h3>
-                <p>
-                  Machine learning model for predictive analytics using advanced
-                  algorithms
-                </p>
-                <a href="#" class="read-more">Read More →</a>
-              </div>
-            </div>
-            <div class="project-card">
-              <img
-                src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&h=400&fit=crop"
-                alt="SQL Database Optimizer"
-              />
-              <div class="project-card-content">
-                <h3>SQL Database Optimizer</h3>
-                <p>
-                  Advanced SQL optimization tool for improving database query
-                  performance
-                </p>
-                <a href="#" class="read-more">Read More →</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- About Section -->
-      <section class="about-section">
-        <h2 class="section-title">
-          About <span class="gradient-text">Me</span>
-        </h2>
-        <div class="about-content">
-          <p>
-            I'm a passionate developer and data analyst with expertise in
-            building scalable applications and deriving meaningful insights from
-            complex datasets. With advanced skills in Python, SQL, and various
-            data visualization tools, I transform data into actionable
-            intelligence. My experience spans from developing robust software
-            solutions to creating comprehensive analytical dashboards that drive
-            business decisions. I'm constantly exploring new technologies and
-            methodologies to stay at the forefront of the ever-evolving tech
-            landscape.
-          </p>
-        </div>
-      </section>
     </div>
 
     <!-- Projects Page -->
-    <div id="projectsPage" class="page hidden">
-      <div class="projects-page">
-        <h1 class="section-title">
-          My <span class="gradient-text">Projects</span>
-        </h1>
-        <div class="projects-page-grid">
-          <div class="project-card">
-            <img
-              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop"
-              alt="Data Analytics Dashboard"
-            />
-            <div class="project-card-content">
-              <h3>Data Analytics Dashboard</h3>
-              <p>
-                Interactive dashboard built with Python and Power BI for
-                real-time data visualization
-              </p>
-              <a href="#" class="read-more">Read More →</a>
+    <div id="projects-page" class="page">
+        <div class="container projects-page-container">
+            <h1 class="projects-page-title">My Projects</h1>
+            
+            <div class="project-detail">
+                <div class="project-detail-content">
+                    <a href="#" class="back-link" onclick="showHome()">← Back to Home</a>
+                    <h3>SSDAS - Smart Sales Data Analysis System</h3>
+                    <p>A comprehensive platform designed for analyzing and visualizing sales data with advanced analytics capabilities. This project demonstrates full-stack development expertise.</p>
+                    <p><strong>Features:</strong></p>
+                    <ul style="margin-bottom: 1rem;">
+                        <li>Real-time sales data analysis</li>
+                        <li>Advanced data visualization</li>
+                        <li>User authentication and authorization</li>
+                        <li>Interactive dashboards</li>
+                        <li>Export data functionality</li>
+                    </ul>
+                    <p><strong>Tech Stack:</strong> React, FastAPI, PostgreSQL, Docker</p>
+                    
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem;">Project Gallery</h4>
+                    <div class="project-gallery">
+                        <div class="gallery-placeholder">📸</div>
+                        <div class="gallery-placeholder">📸</div>
+                        <div class="gallery-placeholder">📸</div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="project-card">
-            <img
-              src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=400&fit=crop"
-              alt="ML Prediction Model"
-            />
-            <div class="project-card-content">
-              <h3>ML Prediction Model</h3>
-              <p>
-                Machine learning model for predictive analytics using advanced
-                algorithms
-              </p>
-              <a href="#" class="read-more">Read More →</a>
+
+            <div class="project-detail">
+                <div class="project-detail-content">
+                    <a href="#" class="back-link" onclick="showHome()">← Back to Home</a>
+                    <h3>Youtube Clone</h3>
+                    <p>A full-featured YouTube clone allowing users to sign in, watch videos, and upload their own content with a seamless user experience.</p>
+                    <p><strong>Features:</strong></p>
+                    <ul style="margin-bottom: 1rem;">
+                        <li>User authentication with secure login</li>
+                        <li>Video upload and processing</li>
+                        <li>Video streaming and playback</li>
+                        <li>Search and recommendations</li>
+                        <li>User subscriptions and notifications</li>
+                    </ul>
+                    <p><strong>Tech Stack:</strong> React, Node.js, MongoDB, Firebase</p>
+                    
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem;">Project Gallery</h4>
+                    <div class="project-gallery">
+                        <div class="gallery-placeholder">📸</div>
+                        <div class="gallery-placeholder">📸</div>
+                        <div class="gallery-placeholder">📸</div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="project-card">
-            <img
-              src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&h=400&fit=crop"
-              alt="SQL Database Optimizer"
-            />
-            <div class="project-card-content">
-              <h3>SQL Database Optimizer</h3>
-              <p>
-                Advanced SQL optimization tool for improving database query
-                performance
-              </p>
-              <a href="#" class="read-more">Read More →</a>
-            </div>
-          </div>
-          <div class="project-card">
-            <img
-              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop"
-              alt="Excel Automation Suite"
-            />
-            <div class="project-card-content">
-              <h3>Excel Automation Suite</h3>
-              <p>
-                Automated data processing and reporting system using Advanced
-                Excel macros
-              </p>
-              <a href="#" class="read-more">Read More →</a>
-            </div>
-          </div>
-          <div class="project-card">
-            <img
-              src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=600&h=400&fit=crop"
-              alt="AI Chatbot Integration"
-            />
-            <div class="project-card-content">
-              <h3>AI Chatbot Integration</h3>
-              <p>
-                Intelligent chatbot system integrated with business processes
-              </p>
-              <a href="#" class="read-more">Read More →</a>
-            </div>
-          </div>
-          <div class="project-card">
-            <img
-              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop"
-              alt="Looker Studio Reports"
-            />
-            <div class="project-card-content">
-              <h3>Looker Studio Reports</h3>
-              <p>Comprehensive business intelligence reports and dashboards</p>
-              <a href="#" class="read-more">Read More →</a>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
 
-    <!-- About Page -->
-    <div id="aboutPage" class="page hidden">
-      <div class="projects-page">
-        <h1 class="section-title">
-          About <span class="gradient-text">Me</span>
-        </h1>
-        <div class="contact-container">
-          <div class="contact-box">
-            <p style="text-align: left; font-size: 1.125rem; line-height: 1.75">
-              I'm a passionate developer and data analyst with expertise in
-              building scalable applications and deriving meaningful insights
-              from complex datasets. With advanced skills in Python, SQL, and
-              various data visualization tools, I transform data into actionable
-              intelligence.
-              <br /><br />
-              My experience spans from developing robust software solutions to
-              creating comprehensive analytical dashboards that drive business
-              decisions. I'm constantly exploring new technologies and
-              methodologies to stay at the forefront of the ever-evolving tech
-              landscape.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Contact Page -->
-    <div id="contactPage" class="page hidden">
-      <div class="contact-page">
-        <h1 class="section-title">
-          Get In <span class="gradient-text">Touch</span>
-        </h1>
-        <div class="contact-container">
-          <div class="contact-box">
-            <p>
-              I'm always open to discussing new projects, creative ideas, or
-              opportunities to be part of your vision.
-            </p>
-            <div class="contact-links">
-              <a href="mailto:ap349500@gmail.com" class="contact-link primary">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <rect x="2" y="4" width="20" height="16" rx="2" />
-                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                </svg>
-                ap349500@gmail.com
-              </a>
-              <a
-                href="https://github.com/anktcodes"
-                target="_blank"
-                class="contact-link secondary"
-              >
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"
-                  />
-                </svg>
-                GitHub
-              </a>
-              <a
-                href="https://www.linkedin.com/in/ankit-pal-69a309319/"
-                target="_blank"
-                class="contact-link secondary"
-              >
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-                  />
-                </svg>
-                LinkedIn
-              </a>
+    <!-- Resume Page -->
+    <div id="resume-page" class="page">
+        <div class="container">
+            <div style="padding: 2rem 0;">
+                <a href="#" class="back-link" onclick="showHome()">← Back to Home</a>
+                <h2 style="text-align: center; margin-bottom: 2rem;">My Resume</h2>
+                
+                <div class="resume-container">
+                    <embed src="resume.pdf" type="application/pdf" class="resume-display">
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="resume.pdf" class="btn-download" download="Ankit_Resume.pdf">⬇️ Download Resume</a>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-      <p>This website is created by <span class="highlight">Ankit</span></p>
-      <p style="font-size: 0.875rem; margin-top: 0.5rem; color: #6b7280">
-        © 2025 All rights are yet to be reserved. XD
-      </p>
-      <p style="font-size: 0.875rem; margin-top: 0.5rem; color: #6b7280">
-        Well you have come to the end. So, here is my leetcode
-        <span style="color: #ffa216"> @anktcodes </span>
-      </p>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-    <script src="script/script.js"></script>
-  </body>
+    <!-- Carousel Modal -->
+    <div id="carousel-modal" class="carousel-modal">
+        <div class="carousel-container">
+            <button class="carousel-close" onclick="closeCarousel()">✕</button>
+            <button class="carousel-arrow carousel-arrow-left" onclick="prevImage()">❮</button>
+            <img id="carousel-image" class="carousel-image" src="" alt="Project preview">
+            <button class="carousel-arrow carousel-arrow-right" onclick="nextImage()">❯</button>
+            <div class="carousel-counter">
+                <span id="carousel-counter-text">1 / 6</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showHome() {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('home-page').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function showProjects() {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('projects-page').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function showResume() {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('resume-page').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function showProjectDetail(index) {
+            showProjects();
+            window.scrollTo(0, 0);
+        }
+
+        // Carousel functionality
+        let currentImageIndex = 0;
+        let currentProjectImages = [];
+
+        const projectImages = {
+            0: ['ssdas-1.png', 'ssdas-2.png', 'ssdas-3.png', 'ssdas-4.png', 'ssdas-5.png', 'ssdas-6.png'],
+            1: [] // YouTube Clone - add images when available
+        };
+
+        function openCarousel(projectIndex) {
+            const images = projectImages[projectIndex];
+            
+            if (!images || images.length === 0) {
+                alert('Preview images coming soon for this project!');
+                return;
+            }
+
+            currentImageIndex = 0;
+            currentProjectImages = images;
+            
+            const modal = document.getElementById('carousel-modal');
+            const imageElement = document.getElementById('carousel-image');
+            
+            // Try loading the image with proper error handling
+            const imagePath = images[0];
+            console.log('Loading image:', imagePath);
+            
+            imageElement.onerror = function() {
+                console.error('Failed to load image:', imagePath);
+                imageElement.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23333" width="400" height="300"/%3E%3Ctext x="50%" y="50%" fill="white" text-anchor="middle" dy=".3em" font-size="18"%3EImage not found:%20' + imagePath + '%3C/text%3E%3C/svg%3E';
+            };
+            
+            imageElement.src = imagePath;
+            updateCarouselCounter();
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCarousel() {
+            const modal = document.getElementById('carousel-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % currentProjectImages.length;
+            updateCarousel();
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + currentProjectImages.length) % currentProjectImages.length;
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const imageElement = document.getElementById('carousel-image');
+            imageElement.src = currentProjectImages[currentImageIndex];
+            updateCarouselCounter();
+        }
+
+        function updateCarouselCounter() {
+            const counterElement = document.getElementById('carousel-counter-text');
+            counterElement.textContent = `${currentImageIndex + 1} / ${currentProjectImages.length}`;
+        }
+
+        // Keyboard navigation for carousel
+        document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('carousel-modal');
+            if (modal.classList.contains('active')) {
+                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'ArrowLeft') prevImage();
+                if (e.key === 'Escape') closeCarousel();
+            }
+        });
+
+        // Close carousel when clicking outside
+        document.getElementById('carousel-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'carousel-modal') {
+                closeCarousel();
+            }
+        });
+
+        function toggleTheme() {
+            const body = document.body;
+            const button = document.querySelector('.theme-toggle');
+            
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                button.textContent = '☀️ Light';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                button.textContent = '🌙 Dark';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Load saved theme preference
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const body = document.body;
+            const button = document.querySelector('.theme-toggle');
+            
+            if (savedTheme === 'dark') {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                button.textContent = '☀️ Light';
+            }
+        });
+    </script>
+</body>
 </html>
