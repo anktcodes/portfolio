@@ -109,6 +109,46 @@
             opacity: 0.7;
         }
 
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 18px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            color: inherit;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: currentColor;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
         /* Main Container */
         .container {
             max-width: 1200px;
@@ -475,23 +515,24 @@
 
         .socials {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            gap: 2rem;
+            gap: 1rem 1.5rem;
             margin-top: 2rem;
         }
 
         .social-link {
-            width: 40px;
-            height: 40px;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
+            padding: 0.6rem 1.25rem;
             border: 1px solid;
-            border-radius: 50%;
+            border-radius: 24px;
             text-decoration: none;
             color: inherit;
             transition: all 0.3s ease;
-            font-weight: bold;
+            font-weight: 500;
+            white-space: nowrap;
         }
 
         .light-mode .social-link {
@@ -698,6 +739,58 @@
         }
 
         @media (max-width: 768px) {
+            .container {
+                padding: 0 1.25rem;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                padding: 1rem 1.25rem;
+            }
+
+            .logo {
+                font-size: 1.25rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                order: 3;
+                flex-basis: 100%;
+                flex-direction: column;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                width: 100%;
+                transition: max-height 0.3s ease;
+            }
+
+            .nav-links.active {
+                max-height: 300px;
+                margin-top: 1rem;
+            }
+
+            .nav-links li {
+                width: 100%;
+                border-top: 1px solid;
+            }
+
+            .light-mode .nav-links li {
+                border-color: var(--border-light);
+            }
+
+            .dark-mode .nav-links li {
+                border-color: var(--border-dark-mode);
+            }
+
+            .nav-links li a {
+                display: block;
+                padding: 0.9rem 0.25rem;
+                text-align: center;
+            }
+
             .carousel-modal {
                 padding: 1rem;
             }
@@ -731,37 +824,153 @@
                 padding: 0.4rem 0.8rem;
             }
 
+            .hero {
+                padding: 2.5rem 0;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
 
             .hero p {
                 font-size: 1rem;
+                padding: 0 0.5rem;
             }
 
-            .nav-links {
-                gap: 1rem;
+            .learning-badge {
+                padding: 0.6rem 1.1rem;
+                font-size: 0.85rem;
+            }
+
+            .tech-section {
+                padding: 2rem 0;
+                margin: 2rem 0;
+            }
+
+            .tech-section h2,
+            .projects-section h2,
+            .resume-section h2,
+            .contact-section h2 {
+                font-size: 1.6rem;
             }
 
             .tech-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .tech-item {
+                padding: 1rem;
+            }
+
+            .projects-section {
+                padding: 2rem 0;
             }
 
             .projects-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .resume-section {
+                padding: 2rem 0;
+            }
+
+            .resume-display {
+                height: 450px;
+            }
+
+            .contact-section {
+                padding: 2rem 0;
+                margin-top: 2rem;
+            }
+
+            .contact-info {
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .socials {
+                gap: 0.75rem 1rem;
+            }
+
+            .social-link {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .projects-page-title {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+            }
+
+            .project-detail {
+                margin: 0 auto 2rem;
+            }
+
+            .project-detail-content {
+                padding: 1.25rem;
+            }
+
+            .project-detail h3 {
+                font-size: 1.4rem;
+            }
+
+            .project-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+
+            .learning-badge {
+                display: block;
+                width: fit-content;
+                margin: 0.4rem auto;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-buttons {
+                flex-direction: column;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            .resume-display {
+                height: 320px;
+            }
+
+            .project-gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.6rem;
             }
         }
     </style>
 </head>
 <body class="light-mode">
     <nav>
-        <a href="#" class="logo" onclick="showHome()">@anktcodes</a>
-        <ul class="nav-links">
-            <li><a href="#" onclick="showHome()">Home</a></li>
-            <li><a href="#" onclick="showProjects()">Projects</a></li>
-            <li><a href="#" onclick="showResume()">Resume</a></li>
+        <a href="#" class="logo" onclick="showHome(); closeMenu();">@anktcodes</a>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#" onclick="showHome(); closeMenu();">Home</a></li>
+            <li><a href="#" onclick="showProjects(); closeMenu();">Projects</a></li>
+            <li><a href="#" onclick="showResume(); closeMenu();">Resume</a></li>
         </ul>
-        <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
+        <div class="nav-right">
+            <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
+            <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
     </nav>
 
     <!-- Home Page -->
@@ -972,6 +1181,20 @@
     </div>
 
     <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const hamburger = document.getElementById('hamburger');
+            const isActive = navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+        }
+
+        function closeMenu() {
+            document.getElementById('nav-links').classList.remove('active');
+            document.getElementById('hamburger').classList.remove('active');
+            document.getElementById('hamburger').setAttribute('aria-expanded', 'false');
+        }
+
         function showHome() {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('home-page').classList.add('active');
@@ -1093,6 +1316,22 @@
                 localStorage.setItem('theme', 'light');
             }
         }
+
+        // Close mobile menu if window is resized back to desktop width
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMenu();
+            }
+        });
+
+        // Close mobile menu when tapping outside of it
+        document.addEventListener('click', (e) => {
+            const nav = e.target.closest('nav');
+            const navLinks = document.getElementById('nav-links');
+            if (!nav && navLinks.classList.contains('active')) {
+                closeMenu();
+            }
+        });
 
         // Load saved theme preference
         window.addEventListener('DOMContentLoaded', () => {
